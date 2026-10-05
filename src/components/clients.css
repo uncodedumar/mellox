@@ -1,0 +1,41 @@
+/* Grey logo marquee */
+/* same width as the dashboard (.hero-dash), so the logos melt into the dark exactly where its sides end */
+.logo-marquee {
+  width: min(100% - 2.5rem, 1040px);
+  margin-inline: auto;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+}
+.logo-track {
+  display: flex;
+  width: max-content;
+  animation: logo-scroll 48s linear infinite;
+  will-change: transform;
+}
+.logo-row {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: clamp(56px, 8vw, 120px);
+  padding-right: clamp(56px, 8vw, 120px); /* equals the gap so the loop is seamless */
+  margin: 0;
+  list-style: none;
+}
+.logo-item img {
+  display: block;
+  max-width: none;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+.logo-item img:hover { opacity: 0.9; }
+.logo-marquee:hover .logo-track { animation-play-state: paused; }
+
+@keyframes logo-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-track { animation: none; }
+}

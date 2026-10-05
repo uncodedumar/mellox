@@ -1,0 +1,16 @@
+{
+  "name": "example",
+  "note": "Sample palette. Replace anchor with your brand's primary color.",
+  "anchor": {
+    "oklch": { "l": 0.60, "c": 0.15, "h": 280 }
+  },
+  "colors": [
+    { "index": 1, "oklch": { "l": 0.95, "c": 0.045, "h": 280 } },
+    { "index": 2, "oklch": { "l": 0.85, "c": 0.075, "h": 280 } },
+    { "index": 3, "oklch": { "l": 0.73, "c": 0.116, "h": 280 } },
+    { "index": 4, "oklch": { "l": 0.60, "c": 0.150, "h": 280 } },
+    { "index": 5, "oklch": { "l": 0.48, "c": 0.119, "h": 280 } },
+    { "index": 6, "oklch": { "l": 0.35, "c": 0.084, "h": 280 } },
+    { "index": 7, "oklch": { "l": 0.20, "c": 0.045, "h": 280 } }
+  ]
+}

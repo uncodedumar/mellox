@@ -1,0 +1,254 @@
+/* ---------- Hero background: lime aurora ----------
+   Only transform / opacity are animated (compositor-only); blurs are static. */
+
+.hero-bg {
+  background-color: #030405;
+  background-image: radial-gradient(90% 50% at 50% 0%, rgb(57 68 74 / 0.28), transparent 75%); /* slate sky */
+  -webkit-mask-image: linear-gradient(180deg, #000 86%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 86%, transparent 100%);
+}
+
+/* how much of the dashboard peeks into the hero (also drives the arc position) */
+:root { --hero-dash-h: clamp(150px, 15vw, 260px); }
+
+/* parallax wrappers are moved by HeroPointer (transform only) */
+.hero-bg [data-depth] { will-change: transform; }
+
+/* --- colour layers: static gradients whose opacity cross-fades --- */
+.hero-tint { mix-blend-mode: screen; will-change: opacity; }
+.hero-tint-lime {
+  background:
+    radial-gradient(75% 60% at 50% 100%, rgb(203 233 96 / 0.3), transparent 70%),
+    radial-gradient(40% 45% at 20% 95%, rgb(203 233 96 / 0.2), transparent 70%),
+    radial-gradient(40% 45% at 80% 95%, rgb(203 233 96 / 0.2), transparent 70%);
+  animation: tint-lime 12s ease-in-out infinite alternate;
+}
+.hero-tint-purple {
+  background: radial-gradient(55% 45% at 38% 60%, rgb(180 137 209 / 0.4), transparent 70%);
+  animation: tint-fade 14s ease-in-out infinite alternate;
+}
+.hero-tint-blue {
+  background: radial-gradient(50% 45% at 78% 65%, rgb(7 86 231 / 0.45), transparent 70%);
+  animation: tint-fade 17s ease-in-out -6s infinite alternate;
+}
+.hero-tint-orange {
+  background: radial-gradient(45% 40% at 14% 75%, rgb(254 112 50 / 0.38), transparent 70%);
+  animation: tint-fade 19s ease-in-out -11s infinite alternate;
+}
+@keyframes tint-lime { from { opacity: 0.65; } to { opacity: 1; } }
+@keyframes tint-fade { from { opacity: 0.1; } to { opacity: 1; } }
+
+/* --- big soft curtains --- */
+.hero-curtain {
+  position: absolute;
+  bottom: 0;
+  transform-origin: 50% 100%;
+  border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+  background: linear-gradient(to top,
+    rgb(203 233 96 / 0.4) 0%,
+    rgb(203 233 96 / 0.2) 40%,
+    rgb(180 137 209 / 0.12) 75%,
+    transparent 100%);
+  filter: blur(46px);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+  animation: curtain-sway var(--dur) ease-in-out var(--delay) infinite alternate;
+}
+@keyframes curtain-sway {
+  0%   { transform: translate3d(-4%, 0, 0) skewX(-7deg) scaleY(0.92); opacity: 0.55; }
+  50%  { opacity: 1; }
+  100% { transform: translate3d(5%, 0, 0) skewX(8deg) scaleY(1.06); opacity: 0.7; }
+}
+
+/* --- fine rays --- */
+.hero-streaks { mix-blend-mode: screen; }
+.hero-streak {
+  position: absolute;
+  bottom: 0;
+  transform-origin: 50% 100%;
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(to top,
+    color-mix(in srgb, var(--brand-lime) 80%, white) 0%,
+    var(--brand-lime) 26%,
+    color-mix(in srgb, var(--brand-lime) 48%, var(--a)) 58%,
+    color-mix(in srgb, var(--a) 42%, transparent) 80%,
+    transparent 100%);
+  opacity: var(--o);
+  will-change: transform, opacity;
+  animation: streak-flow var(--dur) ease-in-out var(--delay) infinite alternate;
+}
+@keyframes streak-flow {
+  0%   { transform: translate3d(calc(var(--sway) * -1), 0, 0) scaleY(0.88); opacity: calc(var(--o) * 0.5); }
+  50%  { opacity: var(--o); }
+  100% { transform: translate3d(var(--sway), 0, 0) scaleY(1.06); opacity: calc(var(--o) * 0.85); }
+}
+
+/* --- floor glow --- */
+.hero-floor {
+  background:
+    radial-gradient(50% 70% at 50% 100%, rgb(255 255 255 / 0.28), rgb(203 233 96 / 0.2) 40%, transparent 75%),
+    radial-gradient(40% 60% at 15% 100%, rgb(254 112 50 / 0.3), transparent 75%),
+    radial-gradient(40% 60% at 85% 100%, rgb(7 86 231 / 0.35), transparent 75%);
+  filter: blur(16px);
+  mix-blend-mode: screen;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+  animation: floor-breathe 8s ease-in-out infinite alternate;
+}
+@keyframes floor-breathe {
+  from { opacity: 0.7; transform: scale(0.97, 0.92); }
+  to   { opacity: 1;   transform: scale(1.04, 1.08); }
+}
+
+/* --- stars --- */
+.hero-star { animation: twinkle var(--d) ease-in-out var(--w) infinite alternate; }
+@keyframes twinkle { from { opacity: 0.15; } to { opacity: 1; } }
+
+/* --- cursor light (moved with transform by HeroPointer, so it never repaints) --- */
+.hero-spot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgb(255 255 255 / 0.22) 0%,
+    rgb(203 233 96 / 0.34) 18%,
+    rgb(203 233 96 / 0.12) 45%,
+    transparent 70%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  will-change: transform, opacity;
+  transform: translate3d(-9999px, -9999px, 0);
+}
+
+.hero-grain {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+  mix-blend-mode: overlay;
+  opacity: 0.32;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-tint,
+  .hero-curtain,
+  .hero-streak,
+  .hero-floor,
+  .hero-star { animation: none; }
+}
+
+/* --- premium shading: darkens the sky, keeps the glow near the horizon, frames the edges --- */
+.hero-shade {
+  background:
+    radial-gradient(125% 85% at 50% 48%, transparent 38%, rgb(1 2 3 / 0.88) 100%), /* vignette */
+    linear-gradient(180deg, rgb(2 3 4 / 0.62) 0%, rgb(2 3 4 / 0.38) 42%, rgb(2 3 4 / 0.12) 78%, transparent 100%),
+    rgb(2 3 4 / 0.34);
+}
+
+/* --- glowing horizon arc behind the dashboard (rim light only, transparent inside) --- */
+.hero-arc {
+  position: absolute;
+  left: 50%;
+  top: calc(100% - var(--hero-dash-h) - 2.2vw);
+  width: 170vw;
+  aspect-ratio: 1;
+  translate: -50% 0;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 2px 1px rgb(255 255 255 / 0.9),
+    inset 0 9px 22px -6px rgb(203 233 96 / 0.85),
+    inset 0 46px 110px -34px rgb(203 233 96 / 0.4),
+    0 -8px 70px rgb(203 233 96 / 0.28);
+  -webkit-mask-image: linear-gradient(90deg, transparent 22%, #000 40%, #000 60%, transparent 78%);
+  mask-image: linear-gradient(90deg, transparent 22%, #000 40%, #000 60%, transparent 78%);
+  animation: arc-breathe 8s ease-in-out infinite alternate;
+}
+@keyframes arc-breathe { from { opacity: 0.7; } to { opacity: 1; } }
+
+/* --- hero copy --- */
+.hero-pill {
+  background: rgb(255 255 255 / 0.06);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.1);
+  backdrop-filter: blur(10px);
+}
+.hero-headline-accent {
+  background: linear-gradient(100deg, #fff 0%, #fff 30%, #cbe960 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-cta {
+  position: relative;
+  background:
+    linear-gradient(#050607, #050607) padding-box,
+    linear-gradient(110deg, rgb(203 233 96 / 0.85), rgb(255 255 255 / 0.18) 45%, rgb(7 86 231 / 0.9)) border-box;
+  border: 1.5px solid transparent;
+  box-shadow:
+    -6px 0 24px -8px rgb(203 233 96 / 0.5),
+    6px 0 26px -6px rgb(7 86 231 / 0.65);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: -6px 0 32px -4px rgb(203 233 96 / 0.7), 6px 0 36px -4px rgb(7 86 231 / 0.85);
+}
+
+/* dashboard shot: translucent glass panel, melts into the dark, opaque circle under the cursor */
+.hero-dash {
+  --dx: 50%; --dy: 50%; --dk: 0;
+  --rv: 0.27; /* scroll reveal 0..1, driven by HeroDash */
+  width: min(100%, 1040px);
+  aspect-ratio: 1917 / 790; /* crop: keeps the search box, drops the quiet bottom */
+  overflow: hidden;
+  transform-origin: 50% 0;
+  transform: perspective(1600px) rotateX(calc((1 - var(--rv)) * 26deg)) scale(calc(0.9 + 0.1 * var(--rv)));
+  will-change: transform;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -40px 100px -30px rgb(203 233 96 / 0.18);
+  background: rgb(3 4 5 / 0.35);
+  -webkit-backdrop-filter: blur(18px) brightness(0.7);
+  backdrop-filter: blur(18px) brightness(0.7);
+  /* melt into the dark at the bottom (affects glass, image and hover light together) */
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 74%, rgb(0 0 0 / 0.55) 88%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 74%, rgb(0 0 0 / 0.55) 88%, transparent 100%);
+}
+.hero-dash img { display: block; width: 100%; height: auto; max-width: none; }
+.hero-dash-base {
+  opacity: calc(0.34 + 0.5 * var(--rv));
+  filter: saturate(0.9) brightness(1.05);
+}
+.hero-dash-lit {
+  position: absolute;
+  inset: 0;
+  opacity: var(--dk);
+  -webkit-mask-image: radial-gradient(circle 280px at var(--dx) var(--dy), #000 0%, rgb(0 0 0 / 0.82) 32%, rgb(0 0 0 / 0.3) 65%, transparent 100%);
+  mask-image: radial-gradient(circle 280px at var(--dx) var(--dy), #000 0%, rgb(0 0 0 / 0.82) 32%, rgb(0 0 0 / 0.3) 65%, transparent 100%);
+}
+/* glass rim that fades out toward the bottom */
+.hero-dash::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.42), rgb(255 255 255 / 0.1) 45%, transparent 85%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+/* chat input: gradient hairline border, lime glow on focus */
+.hero-chat {
+  background: linear-gradient(135deg, rgb(255 255 255 / 0.22), rgb(255 255 255 / 0.05) 40%, rgb(203 233 96 / 0.18) 100%);
+  box-shadow: 0 24px 60px -20px rgb(0 0 0 / 0.9), 0 0 0 0 rgb(203 233 96 / 0);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+.hero-chat:focus-within {
+  background: linear-gradient(135deg, rgb(203 233 96 / 0.75), rgb(255 255 255 / 0.12) 45%, rgb(203 233 96 / 0.45) 100%);
+  box-shadow: 0 24px 60px -20px rgb(0 0 0 / 0.9), 0 0 38px -6px rgb(203 233 96 / 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-dash { --rv: 1; transform: none; }
+}

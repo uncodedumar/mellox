@@ -1,69 +1,92 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import HeroBackground from "@/components/HeroBackground";
+import GlassFilter from "@/components/GlassFilter";
+import Clients from "@/components/Clients";
+import HeroChat from "@/components/HeroChat";
+import HeroDash from "@/components/HeroDash";
+import IntroSection from "@/components/IntroSection";
+import Brains from "@/components/Brains";
+import Problems from "@/components/Problems";
+import Footer from "@/components/Footer";
+import Faq from "@/components/Faq";
+import Testimonials from "@/components/Testimonials";
+import Workflow from "@/components/Workflow";
+import JsonLd from "@/components/JsonLd";
+import Navbar from "@/components/Navbar";
+import { FEATURED, faqs } from "@/lib/faqs";
+import { faqJsonLd } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: { absolute: "Mellox AI: Don't just rank. Be recommended." },
+  description:
+    "Mellox is the AI marketing assistant for agencies and startups. It learns your brand from your website, creates and publishes on-brand content, and works to get you recommended by ChatGPT, Gemini and Perplexity.",
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <div className="relative flex min-h-screen flex-1 flex-col overflow-x-clip bg-[#030405] text-white">
+      <JsonLd data={faqJsonLd(faqs.slice(0, FEATURED))} />
+      <main className="flex flex-1 flex-col">
+      {/* Hero: aurora + copy + chat. Its bottom edge is where the dashboard peeks in. */}
+      <section className="relative flex flex-col items-center px-5 pb-[calc(var(--hero-dash-h)+3.5rem)] pt-36 sm:pt-40">
+        <HeroBackground />
+        <GlassFilter />
+        <Navbar />
+
+        <div className="relative z-10 flex flex-col items-center">
+          <p className="hero-pill rounded-full px-4 py-2 text-[11px] font-medium tracking-[0.02em] text-white/85 sm:text-[12.5px]">
+            The only AI you need for growth and marketing.
+          </p>
+
+          <h1 className="mt-7 max-w-5xl text-center text-[clamp(2.1rem,5.2vw,4.35rem)] font-semibold leading-[1.03] tracking-[-0.035em]">
+            Don&apos;t just rank.
+            <br />
+            <span className="hero-headline-accent">Be recommended.</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+
+          <div className="mt-9 flex w-full justify-center">
+            <HeroChat />
+          </div>
+
+          <p className="mt-5 text-center text-[14px] text-white/55 sm:text-[15px]">
+            No credit card required.{" "}
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="https://app.mellox.ai"
+              className="font-medium text-white/85 underline decoration-white/25 underline-offset-4 transition-colors hover:text-lime hover:decoration-lime/60"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              Sign up for free
+            </a>
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+      </section>
+
+      {/* Product shot: overlaps the hero by --hero-dash-h, then tilts flat and fills in as you scroll */}
+      <div className="relative z-20 -mt-[var(--hero-dash-h)] flex justify-center px-5">
+        <HeroDash />
+      </div>
+
+      <Clients />
+
+      <IntroSection />
+
+      <Problems />
+
+      <Brains />
+
+      <Workflow />
+
+      <Testimonials />
+
+      <Faq
+        items={faqs.slice(0, FEATURED)}
+        title="Curious about Mellox?"
+        blurb="Answers to common questions about our AI marketing platform."
+        showAllLink
+      />
       </main>
+
+      <Footer />
     </div>
   );
 }

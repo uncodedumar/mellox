@@ -1,0 +1,121 @@
+/* ---------- Cookie banner and preferences ---------- */
+.ck-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 18px 32px;
+  width: min(1040px, calc(100vw - 32px));
+  transform: translateX(-50%);
+  padding: 20px 24px;
+  border-radius: 26px;
+  color: #fff;
+  background: rgb(8 11 16 / 0.92);
+  border: 1px solid rgb(255 255 255 / 0.14);
+  box-shadow: 0 30px 80px -20px rgb(0 0 0 / 0.9), 0 0 60px -30px rgb(203 233 96 / 0.5);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  animation: ck-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes ck-in {
+  from { opacity: 0; transform: translate(-50%, 20px); }
+}
+@media (max-width: 760px) {
+  .ck-banner { flex-direction: column; align-items: stretch; bottom: 12px; padding: 18px; }
+}
+.ck-text { flex: 1; }
+.ck-text b { font-size: 17px; font-weight: 600; }
+.ck-text p { margin-top: 6px; font-size: 14.5px; line-height: 1.55; color: #a4aed3; }
+.ck-text a, .ck-lede a { color: var(--brand-lime, #cbe960); text-decoration: underline; text-underline-offset: 3px; }
+
+.ck-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+@media (max-width: 760px) { .ck-actions { justify-content: stretch; } .ck-actions .ck-btn { flex: 1 1 auto; } }
+.ck-btn {
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  cursor: pointer;
+  background: rgb(255 255 255 / 0.08);
+  border: 1px solid rgb(255 255 255 / 0.16);
+  transition: background-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.ck-btn:hover { background: rgb(255 255 255 / 0.16); transform: translateY(-1px); }
+.ck-btn.ghost { background: transparent; border-color: transparent; text-decoration: underline; text-underline-offset: 4px; }
+.ck-btn.lime { color: #11170a; background: #cbe960; border-color: transparent; box-shadow: 0 0 30px -8px rgb(203 233 96 / 0.7); }
+.ck-btn.lime:hover { background: #d8f074; }
+.ck-btn:focus-visible, .ck-switch:focus-visible { outline: 2px solid #cbe960; outline-offset: 3px; }
+
+.ck-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgb(0 0 0 / 0.65);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.ck-dialog {
+  width: min(640px, 100%);
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  padding: clamp(22px, 4vw, 36px);
+  border-radius: 28px;
+  color: #fff;
+  outline: 0;
+  background:
+    radial-gradient(80% 50% at 0% 100%, rgb(254 112 50 / 0.16), transparent 70%),
+    radial-gradient(80% 50% at 100% 100%, rgb(7 86 231 / 0.2), transparent 70%),
+    #080b10;
+  border: 1px solid rgb(255 255 255 / 0.14);
+  box-shadow: 0 40px 100px -20px rgb(0 0 0 / 0.9);
+}
+.ck-dialog h2 { font-size: 28px; font-weight: 500; letter-spacing: -0.025em; }
+.ck-lede { margin-top: 8px; font-size: 15px; line-height: 1.6; color: #a4aed3; }
+.ck-dialog ul { margin: 22px 0 26px; }
+.ck-dialog li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 0;
+  border-top: 1px solid rgb(255 255 255 / 0.09);
+}
+.ck-dialog li b { display: block; font-size: 17px; font-weight: 600; }
+.ck-dialog li span { display: block; margin-top: 4px; font-size: 14px; line-height: 1.5; color: #8b97c2; }
+
+.ck-switch {
+  position: relative;
+  flex: none;
+  width: 52px;
+  height: 30px;
+  border-radius: 999px;
+  cursor: pointer;
+  background: rgb(255 255 255 / 0.14);
+  transition: background-color 0.25s;
+}
+.ck-switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #fff;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ck-switch[aria-checked="true"] { background: #cbe960; }
+.ck-switch[aria-checked="true"]::after { transform: translateX(22px); background: #11170a; }
+.ck-switch:disabled { cursor: not-allowed; opacity: 0.6; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ck-banner { animation: none; }
+  .ck-btn, .ck-switch, .ck-switch::after { transition: none; }
+}

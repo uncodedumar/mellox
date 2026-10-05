@@ -1,0 +1,25 @@
+/* Visually hidden until focused with the keyboard, then it slides in at the top left. */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 16px;
+  z-index: 300;
+  padding: 12px 20px;
+  border-radius: 0 0 16px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #11170a;
+  background: #cbe960;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.5);
+  transform: translateY(-120%);
+  transition: transform 0.18s ease;
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skip-link { transition: none; }
+}

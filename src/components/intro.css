@@ -1,0 +1,109 @@
+/* Outro of the intro section: colour floods the screen in the next section's colour (#020d16), then a closing line. */
+.intro-disc {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 20;
+  width: 300vmax;
+  height: 300vmax;
+  margin: -150vmax 0 0 -150vmax;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transform: scale(0.03);
+  /* the field's own colours (green -> teal-blue), growing until the screen is one colour */
+  background: radial-gradient(
+    circle closest-side,
+    rgb(150 232 190) 0%,
+    rgb(70 186 170) 30%,
+    rgb(20 122 152) 60%,
+    rgb(8 60 100 / 0.9) 80%,
+    rgb(8 60 100 / 0) 100%
+  );
+}
+
+/* then the whole screen settles into the next section's colour (Problems starts at #020d16) */
+.intro-tone {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  pointer-events: none;
+  will-change: opacity;
+  background:
+    radial-gradient(60% 50% at 50% 50%, rgb(28 140 135 / 0.22), transparent 70%),
+    #020d16;
+}
+
+.intro-outro {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  text-align: center;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+.intro-outro h2 {
+  margin: 0;
+  font-size: clamp(2.6rem, 7.4vw, 7rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  color: #fff;
+}
+.intro-outro h2 span {
+  background: linear-gradient(100deg, #fff 0%, #cbe960 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.intro-outro p {
+  margin: clamp(16px, 2vw, 28px) 0 0;
+  max-width: 520px;
+  font-size: clamp(15px, 1.4vw, 20px);
+  line-height: 1.55;
+  color: rgb(255 255 255 / 0.6);
+}
+
+/* ---------- Reduced motion: static, flowing layout (class added by IntroSection) ---------- */
+.intro-static { height: auto !important; }
+.intro-static > div:not(.skip-link) {
+  position: relative !important;
+  height: auto !important;
+  overflow: visible !important;
+  background-color: #020d16 !important;
+}
+.intro-static .color-field,
+.intro-static .grain-tex,
+.intro-static .intro-disc,
+.intro-static .intro-tone { display: none !important; }
+.intro-static .intro-track {
+  width: 100% !important;
+  height: auto !important;
+  flex-direction: column;
+  align-items: stretch;
+  transform: none !important;
+}
+.intro-static .intro-track > div {
+  width: 100% !important;
+  height: auto !important;
+  padding-block: clamp(48px, 8vw, 96px);
+}
+.intro-static .intro-track > div:nth-child(2) {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  padding-inline: clamp(24px, 5vw, 56px) !important;
+}
+.intro-static .intro-track h2 { width: auto !important; margin-left: 0 !important; }
+.intro-static .intro-track ol { flex-wrap: wrap; margin-left: 0 !important; gap: 16px; }
+.intro-static .timeline-seg { display: none !important; }
+.intro-static .intro-outro {
+  position: relative !important;
+  inset: auto !important;
+  padding-block: clamp(64px, 10vw, 120px);
+}
