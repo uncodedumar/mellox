@@ -3,6 +3,7 @@ import HeroBackground from "@/components/HeroBackground";
 import GlassFilter from "@/components/GlassFilter";
 import Clients from "@/components/Clients";
 import HeroChat from "@/components/HeroChat";
+import HeroHeadline from "@/components/HeroHeadline";
 import HeroDash from "@/components/HeroDash";
 import IntroSection from "@/components/IntroSection";
 import Brains from "@/components/Brains";
@@ -41,11 +42,7 @@ export default function Home() {
             The only AI you need for growth and marketing.
           </p>
 
-          <h1 className="mt-7 max-w-5xl text-center text-[clamp(2.1rem,5.2vw,4.35rem)] font-semibold leading-[1.03] tracking-[-0.035em]">
-            Don&apos;t just rank.
-            <br />
-            <span className="hero-headline-accent">Be recommended.</span>
-          </h1>
+          <HeroHeadline />
 
           <div className="mt-9 flex w-full justify-center">
             <HeroChat />

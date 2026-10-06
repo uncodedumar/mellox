@@ -1,10 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { appUrlFor } from "@/lib/app-url";
-
-const pixelIcons = ["Asterisk", "At", "Hash", "Percent"];
 
 const styles = ["Brand DNA only", "Brand DNA + trends", "Free style"];
 const models = ["Mellox Nebula"];
@@ -19,7 +16,6 @@ function Chevron() {
 
 function Menu({
   label,
-  prefix,
   icon,
   options,
   value,
@@ -27,7 +23,6 @@ function Menu({
   align = "left",
 }: {
   label: string;
-  prefix?: string;
   icon?: React.ReactNode;
   options: string[];
   value: string;
@@ -59,11 +54,10 @@ function Menu({
         aria-haspopup="listbox"
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
-        className="flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-2.5 py-2 text-[14px] text-white/60 sm:px-3 sm:text-[15px] transition-colors hover:bg-white/[0.06] hover:text-white/90"
+        className="flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-2 text-[13px] text-white/55 transition-colors hover:bg-white/[0.07] hover:text-white/90 sm:text-[13.5px]"
       >
         {icon}
-        {prefix && <span className="hidden sm:inline">{prefix}</span>}
-        <span className="font-semibold text-white/95">{value}</span>
+        <span className="font-medium text-white/90">{value}</span>
         <span className={`text-white/50 transition-transform duration-200 ${open ? "rotate-180" : ""}`}>
           <Chevron />
         </span>
@@ -72,7 +66,7 @@ function Menu({
       {open && (
         <ul
           role="listbox"
-          className={`absolute bottom-full z-20 mb-2 min-w-[190px] overflow-hidden rounded-2xl border border-white/10 bg-[#0d0f10]/95 p-1.5 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.9)] backdrop-blur-xl ${
+          className={`absolute bottom-full z-20 mb-3 min-w-[190px] overflow-hidden rounded-2xl border border-white/10 bg-[#0d0f10]/95 p-1.5 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.9)] backdrop-blur-xl ${
             align === "right" ? "right-0" : "left-0"
           }`}
         >
@@ -110,10 +104,15 @@ export default function HeroChat() {
         e.preventDefault();
         window.location.assign(appUrlFor(url));
       }}
-      className="hero-chat group relative w-full max-w-[820px] rounded-[32px] p-[1px]"
+      className="hero-chat group relative w-full max-w-[760px] rounded-[30px] p-[1px] sm:rounded-full"
     >
-      <div className="relative rounded-[31px] bg-[#0c0e0f]/90 px-5 pb-5 pt-7 backdrop-blur-xl sm:px-7 sm:pt-8">
-        <div className="flex items-center gap-3">
+      <div className="relative flex flex-wrap items-center gap-y-1 rounded-[29px] bg-[#0b0d0e]/90 p-2 backdrop-blur-xl sm:flex-nowrap sm:gap-1 sm:rounded-full sm:py-2 sm:pl-3 sm:pr-2">
+        <div className="flex min-w-0 basis-full items-center gap-3 pl-3 pr-2 pt-1.5 sm:basis-auto sm:flex-1 sm:pt-0">
+          <svg className="shrink-0 text-white/35 transition-colors group-focus-within:text-lime" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <circle cx="12" cy="12" r="9" />
+            <path d="M3 12h18" />
+            <path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z" />
+          </svg>
           <input
             type="text"
             inputMode="url"
@@ -123,21 +122,16 @@ export default function HeroChat() {
             onChange={(e) => setUrl(e.target.value)}
             placeholder="Enter your website"
             aria-label="Enter your website"
-            className="min-w-0 flex-1 bg-transparent text-[20px] font-medium text-white placeholder:text-white/40 focus:outline-none sm:text-[24px]"
+            className="min-w-0 flex-1 bg-transparent py-2 text-[17px] font-medium text-white placeholder:text-white/35 focus:outline-none sm:text-[18px]"
           />
-          <div className="flex shrink-0 items-center gap-2" aria-hidden>
-            {pixelIcons.map((n) => (
-              <Image key={n} src={`/brand/micro/${n}.svg`} alt="" width={18} height={18} className="h-4 w-4 opacity-90 sm:h-[18px] sm:w-[18px]" />
-            ))}
-          </div>
         </div>
 
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-x-2 gap-y-3 sm:mt-8">
+        <div className="flex w-full items-center gap-0.5 sm:w-auto sm:shrink-0">
+          <span className="mx-1 hidden h-5 w-px bg-white/10 sm:block" aria-hidden />
           <Menu
             label="Content style"
-            prefix="Style"
             icon={
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--brand-lime)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-lime)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                 <path d="M7 3h6a4 4 0 0 1 0 8H7z" />
                 <path d="M7 11h8a4 4 0 0 1 0 8H7z" />
                 <path d="M7 3v16" />
@@ -147,20 +141,17 @@ export default function HeroChat() {
             value={style}
             onChange={setStyle}
           />
-
-          <div className="ml-auto flex items-center gap-2">
-            <Menu label="Model" options={models} value={model} onChange={setModel} align="right" />
-            <a
-              href={appUrlFor(url)}
-              aria-label="Continue to Mellox"
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-lime text-black transition-all duration-200 hover:scale-105 hover:shadow-[0_0_28px_rgba(203,233,96,0.6)]"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                <path d="M12 19V5" />
-                <path d="m5 12 7-7 7 7" />
-              </svg>
-            </a>
-          </div>
+          <Menu label="Model" options={models} value={model} onChange={setModel} align="right" />
+          <a
+            href={appUrlFor(url)}
+            aria-label="Continue to Mellox"
+            className="ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-lime text-black transition-all duration-200 hover:scale-105 hover:shadow-[0_0_24px_rgba(203,233,96,0.55)] sm:ml-1"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <path d="M12 19V5" />
+              <path d="m5 12 7-7 7 7" />
+            </svg>
+          </a>
         </div>
       </div>
     </form>

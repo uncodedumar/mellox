@@ -198,11 +198,11 @@ export default function IntroSection() {
 
   return (
     <>
-    <section id="about" ref={sectionRef} className="relative z-[1]" aria-label="What Mellox does">
+    <section id="about" ref={sectionRef} className="intro relative z-[1]" aria-label="What Mellox does">
       <a href="#after-intro" className="skip-link">
         Skip this animated section
       </a>
-      <div ref={stageRef} className="sticky top-0 h-[100svh] overflow-hidden">
+      <div ref={stageRef} className="intro-stage sticky top-0 h-[100svh] overflow-hidden">
         <div className="grain-tex pointer-events-none absolute inset-0" aria-hidden="true" />
         {/* colour field (outside the track so it can glide to the centre) */}
         <div ref={fieldRef} className="color-field" aria-hidden="true">
@@ -247,6 +247,7 @@ export default function IntroSection() {
 
           {/* Panel B: heading + timeline */}
           <div className="flex h-full shrink-0 items-center pl-[8vw] pr-[18vw]">
+            <div className="intro-group contents">
             <h2
               ref={headRef}
               className="w-[min(78vw,640px)] shrink-0 text-[clamp(2rem,5vw,4.5rem)] font-normal leading-[1.05] tracking-[-0.03em] text-white"
@@ -273,7 +274,9 @@ export default function IntroSection() {
                 </li>
               ))}
             </ol>
+            </div>
 
+            <div className="intro-group contents">
             <h2
               ref={head2Ref}
               className="ml-[10vw] w-[min(78vw,640px)] shrink-0 text-[clamp(2rem,5vw,4.5rem)] font-normal leading-[1.05] tracking-[-0.03em] text-white"
@@ -300,6 +303,7 @@ export default function IntroSection() {
                 </li>
               ))}
             </ol>
+            </div>
           </div>
         </div>
 
