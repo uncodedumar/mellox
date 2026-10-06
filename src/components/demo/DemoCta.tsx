@@ -1,5 +1,4 @@
-import Link from "next/link";
-import "./demo.css";
+import CtaBand from "@/components/cta/CtaBand";
 
 /** Sales-led call to action: "Book a demo" first, "Start free" second. Used on pricing, compare and similar pages. */
 export default function DemoCta({
@@ -13,23 +12,11 @@ export default function DemoCta({
   interest?: string;
 }) {
   return (
-    <section className="px-section">
-      <div className="px-inner">
-        <div className="px-card dm-cta" data-reveal>
-          <div>
-            <h2>{title}</h2>
-            <p>{text}</p>
-          </div>
-          <div className="dm-cta-actions">
-            <Link href={interest ? `/demo?interest=${interest}` : "/demo"} className="px-cta px-cta-lime">
-              Book a demo
-            </Link>
-            <a href="https://app.mellox.ai" className="dm-ghost">
-              Start free
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <CtaBand
+      title={title}
+      text={text}
+      primary={{ label: "Book a demo", href: interest ? `/demo?interest=${interest}` : "/demo" }}
+      secondary={{ label: "Start free", href: "https://app.mellox.ai" }}
+    />
   );
 }

@@ -15,11 +15,13 @@ import PricingReveal from "@/components/pricing/PricingReveal";
 import { ALL_COMPETITORS, CAPS, CATEGORIES, COMPARE_FAQS } from "@/lib/compare";
 import "@/components/pricing/pricing.css";
 import "@/components/compare/compare.css";
+import WhatsNew from "@/components/whats-new/WhatsNew";
 
 export const metadata: Metadata = {
   title: "Compare Mellox AI with Pomelli, Profound, Jasper and more",
   description:
-    "An honest, feature by feature comparison of Mellox AI with 15 other AI marketing platforms across brand memory, content generation, AEO and GEO monitoring and agency mode.",
+    "A feature by feature comparison of Mellox AI with 15 other AI marketing platforms: brand memory, content, AEO and GEO monitoring, and agency mode.",
+  alternates: { canonical: "/compare" },
 };
 
 const faqJsonLd = {
@@ -77,6 +79,7 @@ export default function ComparePage() {
 
       <main>
         <CompareLandscape />
+        <WhatsNew title="Beyond the table: new in Mellox" blurb="Capabilities added recently, on top of the 14 compared below." />
         <CompareCoverage />
         <CompareMatrix />
         <CompareHeadToHead />

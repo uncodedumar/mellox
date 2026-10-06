@@ -1,7 +1,21 @@
 import { PLANS } from "./pricing";
 
-/** Public origin of the site, used for absolute urls in structured data. Set NEXT_PUBLIC_SITE_URL in production. */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://mellox.ai").replace(/\/$/, "");
+export const PRODUCTION_URL = "https://mellox.ai";
+
+/**
+ * Public origin of the site: used for canonical urls, social cards, structured data, the sitemap and llms.txt.
+ * - Set NEXT_PUBLIC_SITE_URL on the production host. If it is missing, production falls back to https://mellox.ai.
+ * - A localhost value is ignored in production, so a stray local setting can never leak into the live site.
+ * - In development it defaults to http://localhost:3000.
+ */
+export function resolveSiteUrl(env = process.env.NEXT_PUBLIC_SITE_URL, production = process.env.NODE_ENV === "production") {
+  const value = env?.trim().replace(/\/$/, "");
+  const isLocal = !!value && /^(https?:\/\/)?(localhost|127\.0\.0\.1|\[::1\])(:\d+)?(\/|$)/i.test(value);
+  if (value && !(production && isLocal)) return value;
+  return production ? PRODUCTION_URL : "http://localhost:3000";
+}
+
+export const SITE_URL = resolveSiteUrl();
 
 export const SITE_NAME = "Mellox AI";
 

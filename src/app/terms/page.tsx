@@ -7,6 +7,7 @@ import { TERMS, TERMS_UPDATED } from "@/lib/terms";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "The terms that apply when you use Mellox AI: accounts, plans and credits, your content, AI output, acceptable use and more.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

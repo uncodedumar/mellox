@@ -21,7 +21,8 @@ const links: NavLink[] = [
       { label: "The Four Brains", hint: "Four specialists, one answer", href: "/features/four-brains" },
       { label: "Distribution", hint: "Publish natively everywhere", href: "/features/distribution" },
       { label: "Agency Mode", hint: "Every client, one command deck", href: "/features/agency-mode" },
-      { label: "Integrations", hint: "Google, Meta and social", href: "/integrations" },
+      { label: "Autopilot", hint: "Sit back and watch it work", href: "/features/autopilot" },
+      { label: "Integrations", hint: "Claude, ChatGPT, Slack, Notion, Canva", href: "/integrations" },
     ],
   },
   {
@@ -146,13 +147,13 @@ export default function Navbar() {
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
-      <div className="grid h-[96px] w-full grid-cols-[1fr_auto] items-center px-4 sm:px-6 lg:grid-cols-[1fr_auto_1fr] lg:px-8">
-        <Link href="/" aria-label="Mellox AI home" className="flex items-center gap-3 justify-self-start">
+      <div className="grid h-[96px] w-full grid-cols-[1fr_auto] items-center px-4 sm:px-6 min-[1180px]:grid-cols-[1fr_auto_1fr] min-[1180px]:px-8">
+        <Link href="/" aria-label="Mellox AI home" className="flex items-center gap-3 justify-self-start py-2.5">
           <Image src="/brand/mark-lime.svg" alt="" width={44} height={23} priority />
           <span className="font-display text-xl tracking-wide text-white">MELLOX</span>
         </Link>
 
-        <nav aria-label="Primary" className="glass hidden rounded-full px-2 py-3 lg:block">
+        <nav aria-label="Primary" className="glass hidden rounded-full px-2 py-3 min-[1180px]:block">
           <ul className="flex items-center">
             {links.map((l) =>
               l.children ? (
@@ -171,13 +172,13 @@ export default function Navbar() {
         <div className="flex items-center justify-end gap-2 justify-self-end xl:gap-3">
           <a
             href={APP_URL}
-            className="glass-link hidden whitespace-nowrap rounded-full px-4 py-3 text-[16px] font-medium text-white/85 transition hover:text-white lg:inline-block xl:text-[17px]"
+            className="glass-link hidden whitespace-nowrap rounded-full px-4 py-3 text-[16px] font-medium text-white/85 transition hover:text-white min-[1180px]:inline-block xl:text-[17px]"
           >
             Log in
           </a>
           <Link
             href="/demo"
-            className="glass glass-lime glass-interactive hidden whitespace-nowrap rounded-full px-6 py-3.5 text-[16px] font-semibold text-white lg:inline-block xl:px-7 xl:text-[17px]"
+            className="glass glass-lime glass-interactive hidden whitespace-nowrap rounded-full px-6 py-3.5 text-[16px] font-semibold text-white min-[1180px]:inline-block xl:px-7 xl:text-[17px]"
           >
             Book a demo
           </Link>
@@ -186,7 +187,7 @@ export default function Navbar() {
             aria-label="Toggle menu"
             aria-expanded={open}
             onClick={() => (open ? close() : setOpen(true))}
-            className="glass glass-interactive flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full lg:hidden"
+            className="glass glass-interactive flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full min-[1180px]:hidden"
           >
             <span className={`h-0.5 w-5 bg-white transition ${open ? "translate-y-2 rotate-45" : ""}`} />
             <span className={`h-0.5 w-5 bg-white transition ${open ? "opacity-0" : ""}`} />
@@ -196,7 +197,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <nav aria-label="Mobile" className="glass mx-4 mt-[-24px] max-h-[calc(100vh-110px)] overflow-y-auto rounded-3xl p-4 sm:mx-6 lg:hidden">
+        <nav aria-label="Mobile" data-lenis-prevent className="glass mx-4 mt-[-24px] max-h-[calc(100vh-110px)] overflow-y-auto rounded-3xl p-4 sm:mx-6 min-[1180px]:hidden">
           <ul className="flex flex-col">
             {links.map((l) =>
               l.children ? (

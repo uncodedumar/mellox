@@ -98,13 +98,13 @@ export const FOUNDERS = [
   {
     name: "Zain Mudassir Iqbal",
     role: "Founder and CEO",
-    photo: "/about/zain-new.jpg",
+    photo: "/about/zain-new.webp",
     accent: "#cbe960",
   },
   {
     name: "Muhammad Umar Riaz",
     role: "Co-Founder and CTO",
-    photo: "/about/umar.jpg",
+    photo: "/about/umar.webp",
     accent: "#4f8bff",
   },
 ];

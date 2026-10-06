@@ -1,5 +1,6 @@
 // Pricing content for /pricing. Source of truth: "Mellox AI Pricing.html".
 import type { Faq } from "./faqs";
+import { NEW_FAQS } from "./whats-new";
 
 export type Plan = {
   id: "starter" | "growth" | "agency" | "scale";
@@ -40,6 +41,7 @@ export const PLANS: Plan[] = [
       "Track 3 competitors",
       "Weekly Market Brain update and Coach briefing",
       "Publish up to 100 posts a month",
+      "Autopilot, Claude and ChatGPT over MCP, Slack, Notion and Canva",
       "Email support",
     ],
   },
@@ -227,4 +229,5 @@ export const PRICING_FAQS: Faq[] = [
     q: "What does Contact us include?",
     a: "Scale is built for networks and large teams: 30 or more brands, 50,000 credits, 100 video credits, SSO, API access, an SLA and a dedicated success manager. Pricing is built around your roster, so we quote it.",
   },
+  ...NEW_FAQS,
 ];

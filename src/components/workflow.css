@@ -59,7 +59,7 @@
 
 /* ---------- pinned stage ---------- */
 .wf-pin {
-  --stage-h: clamp(560px, calc(100vh - 124px), 720px);
+  --stage-h: clamp(560px, calc(100svh - 124px), 720px);
   height: calc(var(--stage-h) + 4.4 * 80vh);
 }
 .wf-stage {
@@ -829,7 +829,7 @@
 
 /* ---------- small screens ---------- */
 @media (max-width: 980px) {
-  .wf-pin { --stage-h: clamp(660px, calc(100vh - 110px), 820px); }
+  .wf-pin { --stage-h: clamp(660px, calc(100svh - 110px), 820px); }
   /* tabs: five steps and four connectors must fit the phone width, so nothing clips at either end */
   .wf-tabs { max-width: 100%; }
   .wf-tab { gap: 5px; padding: 9px 10px; font-size: 13.5px; }
@@ -872,4 +872,38 @@
   .rv, .post { opacity: 1; }
   .typed, .p-text { width: auto; border: 0; }
   .g-fg { stroke-dashoffset: 13; }
+}
+
+/* ---------- short screens (landscape phones, small windows) ----------
+   Same idea as the brains section: no pinning, show all five steps stacked. */
+@media (max-height: 620px) {
+  .wf-pin {
+    height: auto;
+  }
+  .wf-stage {
+    position: static;
+    height: auto;
+  }
+  .wf-tabs {
+    display: none;
+  }
+  .wf-cards {
+    display: grid;
+    gap: 20px;
+  }
+  .wf-card {
+    position: relative !important;
+    inset: auto;
+    min-height: 420px;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  .wf-card li {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .wf-card:not(.is-active) .wf-ill * {
+    animation-play-state: running !important;
+  }
 }

@@ -15,6 +15,10 @@
 
 # next.js
 /.next/
+/.next-*/
+
+# original images before WebP conversion (local backup)
+/source-images/
 /out/
 
 # production
@@ -39,3 +43,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# alternate build output folder (NEXT_DIST_DIR=.next-build)
+/.next-build/

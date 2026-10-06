@@ -25,6 +25,14 @@ export const faqs: Faq[] = [
     a: "Mellox creates a native version of each post for LinkedIn, X, Instagram, TikTok, Facebook, YouTube, Pinterest, Reddit and Threads, then publishes instantly or on the schedule you set.",
   },
   {
+    q: "What is Autopilot mode?",
+    a: "Autopilot is a mode where Mellox does the work for you while you sit back and watch. It runs the workflow from planning to creating to publishing, instead of you driving each step.",
+  },
+  {
+    q: "Does Mellox work with Claude, ChatGPT, Slack, Notion and Canva?",
+    a: "Yes. Mellox connects to Claude and ChatGPT over MCP so you can use it from inside those assistants, connects to Slack and Notion, and every generated image can be fully edited in Canva.",
+  },
+  {
     q: "Can I manage multiple clients or brands?",
     a: "Yes. Agency Mode gives you one command deck for every client: switch brands, review a unified approval queue, share roles with clients and track activity across the whole roster.",
   },
@@ -54,7 +62,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Does Mellox connect to the tools I already use?",
-    a: "Mellox syncs analytics from Google and Meta, tracks mentions across major AI assistants and connects to your social accounts so everything lives in one workspace.",
+    a: "Mellox syncs analytics from Google and Meta, tracks mentions across major AI assistants, connects to your social accounts, works with Claude and ChatGPT over MCP, connects to Slack and Notion, and opens generated images in Canva, so everything lives in one workspace.",
   },
   {
     q: "Do I need technical skills to use it?",

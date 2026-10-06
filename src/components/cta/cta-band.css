@@ -1,0 +1,52 @@
+/* ---------- Shared call-to-action band ----------
+   Selectors are `.px .px-card.cta-band` so the layout never depends on which stylesheet loads last. */
+.px .px-card.cta-band {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 28px clamp(32px, 5vw, 72px);
+  padding: clamp(28px, 4vw, 52px) clamp(24px, 4.5vw, 64px);
+  border-color: rgb(255 255 255 / 0.12);
+}
+.cta-copy { min-width: 0; }
+.cta-copy h2 {
+  max-width: 24ch;
+  font-size: clamp(1.8rem, 3.6vw, 3rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: #fff;
+  text-wrap: balance;
+}
+.cta-copy p {
+  max-width: 56ch;
+  margin-top: 12px;
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.6;
+  color: #9aa7cf;
+  text-wrap: pretty;
+}
+.cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.px .cta-actions .px-cta {
+  flex: none;
+  margin-top: 0;
+  padding: 16px 34px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* tablet: stack, buttons line up with the text */
+@media (max-width: 900px) {
+  .px .px-card.cta-band { grid-template-columns: 1fr; }
+  .cta-actions { justify-content: flex-start; flex-wrap: wrap; }
+}
+/* phone: full width buttons */
+@media (max-width: 520px) {
+  .px .cta-actions { flex-direction: column; align-items: stretch; }
+  .px .cta-actions .px-cta { width: 100%; text-align: center; }
+}

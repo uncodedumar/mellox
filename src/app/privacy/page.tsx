@@ -7,6 +7,7 @@ import { PRIVACY, PRIVACY_UPDATED } from "@/lib/privacy";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "How Mellox AI collects, uses and protects your information, and the choices and rights you have.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

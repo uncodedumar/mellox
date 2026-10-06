@@ -8,6 +8,7 @@ import { COOKIES, COOKIES_UPDATED } from "@/lib/cookies-policy";
 export const metadata: Metadata = {
   title: "Cookie Policy",
   description: "Which cookies Mellox AI uses, why we use them, and how to change your cookie choices at any time.",
+  alternates: { canonical: "/cookies" },
 };
 
 export default function CookiesPage() {

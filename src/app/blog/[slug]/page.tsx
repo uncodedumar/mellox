@@ -131,7 +131,7 @@ export default async function BlogPostPage({ params }: Props) {
         {post.cover && (
           <div className="px-inner bl-cover-wrap">
             <div className="bl-cover-hero" data-reveal>
-              <BlogCover slug={slug} cover={post.cover} alt={post.coverAlt} />
+              <BlogCover slug={slug} cover={post.cover} alt={post.coverAlt} sizes="(max-width: 1200px) 100vw, 1120px" priority />
             </div>
             {post.coverCredit && (
               <p className="bl-credit">

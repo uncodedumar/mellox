@@ -85,6 +85,7 @@ export const TERMS: TermsSection[] = [
       "When you connect a social, CMS or analytics account, you authorise Mellox to act on it as you direct, for example to schedule and publish approved posts.",
       "Every generated draft goes to a Needs Approval queue. Nothing is scheduled or published until you review and confirm it.",
       "You must follow the rules of each connected platform. Platforms can change or limit access, and a post can fail to publish for reasons outside our control.",
+      "The same applies to assistants and apps you connect, such as Claude and ChatGPT through MCP, Slack, Notion and Canva. You choose what to connect, and their own terms apply to your use of them.",
       "You can disconnect an account at any time from your workspace settings.",
     ],
   },

@@ -1,3 +1,130 @@
+/* Styles that only the home page's intro / brains / problems / workflow sections use.
+   They used to live in globals.css, which made every page download them. */
+/* ---------- Colour field: brain colours + lime blending into the bg, half off the right edge ---------- */
+.color-field {
+  position: absolute;
+  top: 50%;
+  left: 100%; /* JS moves this from the right edge (100%) to the centre (50%) */
+  width: clamp(420px, 62vw, 900px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%); /* centre sits on `left`: at 100% it is half in, half out */
+  isolation: isolate;
+  pointer-events: none;
+  /* no edge: the whole field fades smoothly into the page background */
+  -webkit-mask-image: radial-gradient(closest-side, #000 18%, rgb(0 0 0 / 0.55) 55%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 18%, rgb(0 0 0 / 0.55) 55%, transparent 100%);
+}
+.color-field .field-layer {
+  position: absolute;
+  inset: 0;
+}
+.color-field .blob {
+  position: absolute;
+  width: 58%;
+  height: 58%;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.9;
+  will-change: transform;
+}
+.color-field .b1 { background: var(--brain-blue);   top: 4%;  left: 8%;   animation: orb-a 4.5s ease-in-out infinite alternate; }
+.color-field .b2 { background: var(--brain-orange); bottom: 2%; right: 4%; animation: orb-b 5s ease-in-out infinite alternate; }
+.color-field .b3 { background: var(--brain-purple); top: 2%;  right: 6%;  width: 50%; height: 50%; animation: orb-c 5.5s ease-in-out infinite alternate; }
+.color-field .b4 { background: var(--brain-red);    bottom: 8%; left: 10%; width: 46%; height: 46%; animation: orb-d 4.8s ease-in-out infinite alternate; }
+.color-field .b5 { background: var(--brand-lime);   top: 30%; left: 28%;  width: 42%; height: 42%; opacity: 0.75; animation: orb-e 5.2s ease-in-out infinite alternate; }
+/* green-only layer (shades from brand lime to deep green) */
+.color-field .g1 { background: #cbe960; top: 6%;  left: 10%;  animation: orb-a 4.5s ease-in-out infinite alternate; }
+.color-field .g2 { background: #8fcf4a; bottom: 2%; right: 6%; animation: orb-b 5s ease-in-out infinite alternate; }
+.color-field .g3 { background: #4fae55; top: 4%;  right: 8%;  width: 50%; height: 50%; animation: orb-c 5.5s ease-in-out infinite alternate; }
+.color-field .g4 { background: #2f8f5b; bottom: 8%; left: 8%;  width: 48%; height: 48%; animation: orb-d 4.8s ease-in-out infinite alternate; }
+.color-field .g5 { background: #e4f58f; top: 30%; left: 28%;  width: 42%; height: 42%; opacity: 0.7; animation: orb-e 5.2s ease-in-out infinite alternate; }
+.color-field .grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.1 -0.1'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 220px 220px;
+}
+@keyframes orb-a { to { transform: translate(70%, 55%) scale(1.25); } }
+@keyframes orb-b { to { transform: translate(-75%, -50%) scale(1.2); } }
+@keyframes orb-c { to { transform: translate(-85%, 70%) scale(1.35); } }
+@keyframes orb-d { to { transform: translate(80%, -65%) scale(1.3); } }
+@keyframes orb-e { to { transform: translate(-60%, 75%) scale(0.9); } }
+@media (prefers-reduced-motion: reduce) {
+  .color-field .blob { animation: none; }
+}
+
+/* ---------- LLM timeline ---------- */
+.timeline-node {
+  --r: 0;
+  position: relative;
+  display: flex;
+  width: clamp(120px, 12vw, 168px);
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  opacity: var(--r);
+  --s: 1;
+  transform: translate3d(0, calc((1 - var(--r)) * 34px), 0) scale(calc((0.9 + 0.1 * var(--r)) * var(--s)));
+  will-change: transform, opacity;
+}
+/* connecting line, drawn left -> right as the node arrives */
+.timeline-seg {
+  position: absolute;
+  top: 34px;
+  right: 50%;
+  width: 100%;
+  height: 2px;
+  transform-origin: right center;
+  transform: scaleX(var(--r));
+  background: linear-gradient(90deg, rgb(255 255 255 / 0.15), rgb(203 233 96 / 0.9));
+  box-shadow: 0 0 12px rgb(203 233 96 / 0.5);
+}
+.timeline-node:first-child .timeline-seg {
+  width: 50%;
+}
+.timeline-dot {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 68px;
+  height: 68px;
+  place-items: center;
+  border-radius: 9999px;
+}
+.timeline-icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+.timeline-label {
+  max-width: 100%;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.25;
+  color: rgb(255 255 255 / 0.8);
+}
+
+/* Timeline logo circles: fully opaque so the line never shows through */
+.timeline-dot.glass,
+.timeline-dot.glass:hover {
+  background:
+    linear-gradient(135deg, rgb(255 255 255 / 0.12), rgb(255 255 255 / 0.03) 60%, rgb(255 255 255 / 0.07)),
+    #0a0f13;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* Film grain used as a texture over dark backgrounds */
+.grain-tex {
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.1 -0.1'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 220px 220px;
+}
+
 /* Outro of the intro section: colour floods the screen in the next section's colour (#020d16), then a closing line. */
 .intro-disc {
   position: absolute;

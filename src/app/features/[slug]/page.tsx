@@ -11,6 +11,7 @@ import PricingReveal from "@/components/pricing/PricingReveal";
 import { FEATURES, FEATURE_BY_SLUG, PLAN_COLUMNS, matrixRow, type FeatureSlug } from "@/lib/features";
 import "@/components/pricing/pricing.css";
 import "@/components/features/features.css";
+import CtaBand from "@/components/cta/CtaBand";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -234,19 +235,11 @@ export default async function FeaturePage({ params }: Props) {
           </div>
         </section>
 
-        <section className="px-section">
-          <div className="px-inner">
-            <div className="px-card ft-cta" data-reveal>
-              <div>
-                <h2>Try {f.name} on your own brand.</h2>
-                <p>Start free. No credit card required.</p>
-              </div>
-              <a href="https://app.mellox.ai" className="px-cta px-cta-lime">
-                Get started
-              </a>
-            </div>
-          </div>
-        </section>
+        <CtaBand
+          title={<>Try {f.name} on your own brand.</>}
+          text="Start free. No credit card required."
+          primary={{ label: "Get started", href: "https://app.mellox.ai" }}
+        />
       </main>
 
       <Footer />

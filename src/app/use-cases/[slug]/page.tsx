@@ -15,6 +15,7 @@ import { USE_CASES, USE_CASE_BY_SLUG, type UseCaseSlug } from "@/lib/use-cases";
 import "@/components/pricing/pricing.css";
 import "@/components/features/features.css";
 import "@/components/use-cases/use-cases.css";
+import CtaBand from "@/components/cta/CtaBand";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -227,19 +228,11 @@ export default async function UseCasePage({ params }: Props) {
           </div>
         </section>
 
-        <section className="px-section">
-          <div className="px-inner">
-            <div className="px-card ft-cta" data-reveal>
-              <div>
-                <h2>See Mellox working for {u.name.toLowerCase()}.</h2>
-                <p>Start free. No credit card required.</p>
-              </div>
-              <a href="https://app.mellox.ai" className="px-cta px-cta-lime">
-                Get started
-              </a>
-            </div>
-          </div>
-        </section>
+        <CtaBand
+          title={<>See Mellox working for {u.name.toLowerCase()}.</>}
+          text="Start free. No credit card required."
+          primary={{ label: "Get started", href: "https://app.mellox.ai" }}
+        />
       </main>
 
       <Footer />

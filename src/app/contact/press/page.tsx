@@ -14,6 +14,7 @@ import "@/components/contact/contact.css";
 export const metadata: Metadata = {
   title: "Press and media inquiries",
   description: "Interview, article and media requests for the Mellox team.",
+  alternates: { canonical: "/contact/press" },
 };
 
 export default function PressPage() {

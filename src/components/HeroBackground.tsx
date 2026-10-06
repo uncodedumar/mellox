@@ -6,7 +6,7 @@ import "./hero-background.css";
  *
  * Performance notes: every moving layer animates only `transform` / `opacity`
  * (compositor-only) and blurs are static, so motion and hover stay smooth.
- * Server-rendered; only <HeroPointer /> is a client component.
+ * Server-rendered; it is a pure server component.
  */
 
 // Deterministic PRNG so the layout is identical on every render.
@@ -32,7 +32,7 @@ function accent(t: number, rand: number) {
 
 function buildStreaks() {
   const rand = mulberry32(11);
-  const count = 64;
+  const count = 44;
   return Array.from({ length: count }, (_, i) => {
     const t = (i + rand()) / count;
     // wavy crest line so the tops read as aurora curtains rather than bars
@@ -54,7 +54,7 @@ function buildStreaks() {
 
 function buildStars() {
   const rand = mulberry32(42);
-  return Array.from({ length: 130 }, (_, i) => ({
+  return Array.from({ length: 90 }, (_, i) => ({
     x: r2(rand() * 100),
     y: r2(rand() * 80),
     r: r2(0.5 + rand() * 1.1),

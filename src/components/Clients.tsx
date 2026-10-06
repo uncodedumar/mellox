@@ -3,15 +3,15 @@ import "./clients.css";
 
 // Greyscale versions live in /public/Clients/grey (generated from the originals).
 const logos: { src: string; alt: string; w: number; h: number; height: number }[] = [
-  { src: "/Clients/grey/44-1-150x150.png", alt: "Client logo", w: 200, h: 200, height: 44 },
-  { src: "/Clients/grey/cinqo.png", alt: "Cinqo", w: 202, h: 200, height: 46 },
+  { src: "/Clients/grey/44-1-150x150.webp", alt: "Client logo", w: 200, h: 200, height: 44 },
+  { src: "/Clients/grey/cinqo.webp", alt: "Cinqo", w: 202, h: 200, height: 46 },
   { src: "/Clients/grey/logo1.svg", alt: "Client logo", w: 400, h: 400, height: 52 },
-  { src: "/Clients/grey/snap.png", alt: "Snapchat", w: 200, h: 200, height: 40 },
-  { src: "/Clients/grey/soul.png", alt: "Client logo", w: 118, h: 200, height: 52 },
-  { src: "/Clients/grey/channels4_profile.png", alt: "Client logo", w: 200, h: 200, height: 42 },
-  { src: "/Clients/grey/whale-ink.png", alt: "Whale Ink", w: 212, h: 200, height: 46 },
-  { src: "/Clients/grey/rado-logo.png", alt: "Rado", w: 200, h: 200, height: 44 },
-  { src: "/Clients/grey/logo.png", alt: "Client logo", w: 203, h: 200, height: 42 },
+  { src: "/Clients/grey/snap.webp", alt: "Snapchat", w: 200, h: 200, height: 40 },
+  { src: "/Clients/grey/soul.webp", alt: "Client logo", w: 118, h: 200, height: 52 },
+  { src: "/Clients/grey/channels4_profile.webp", alt: "Client logo", w: 200, h: 200, height: 42 },
+  { src: "/Clients/grey/whale-ink.webp", alt: "Whale Ink", w: 212, h: 200, height: 46 },
+  { src: "/Clients/grey/rado-logo.webp", alt: "Rado", w: 200, h: 200, height: 44 },
+  { src: "/Clients/grey/logo.webp", alt: "Client logo", w: 203, h: 200, height: 42 },
 ];
 
 function Row({ hidden = false }: { hidden?: boolean }) {

@@ -10,6 +10,7 @@ import { FAQS, GROUPS, STEPS } from "@/lib/integrations";
 import "@/components/pricing/pricing.css";
 import "@/components/features/features.css";
 import "@/components/integrations/integrations.css";
+import CtaBand from "@/components/cta/CtaBand";
 
 export const metadata: Metadata = {
   title: "Integrations",
@@ -48,7 +49,7 @@ export default function IntegrationsPage() {
             Integrations
           </p>
           <h1 className="ft-h1">Connect the channels that matter.</h1>
-          <p className="lede">Google, Meta and every social platform your audience uses, working together in one workspace.</p>
+          <p className="lede">Claude and ChatGPT over MCP, Slack, Notion and Canva, plus Google, Meta and every social platform your audience uses, working together in one workspace.</p>
           <div className="ft-actions">
             <a href="https://app.mellox.ai" className="px-cta px-cta-lime">
               Start free
@@ -98,7 +99,10 @@ export default function IntegrationsPage() {
                     <div key={`${g.id}-${it.name}`} className="ig-card" data-reveal>
                       <div className="ig-top">
                         <span className="ig-logo">
-                          {it.logo ? (
+                          {it.image ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img className="ig-img" src={it.image} alt="" width={34} height={34} />
+                          ) : it.logo ? (
                             // eslint-disable-next-line @next/next/no-img-element
                             <img src={`/llms/${it.logo}.svg`} alt="" width={28} height={28} />
                           ) : Icon ? (
@@ -132,19 +136,11 @@ export default function IntegrationsPage() {
           </div>
         </section>
 
-        <section className="px-section">
-          <div className="px-inner">
-            <div className="px-card ft-cta" data-reveal>
-              <div>
-                <h2>Missing a channel you need?</h2>
-                <p>Tell us what you would like to connect and we will take a look.</p>
-              </div>
-              <Link href="/contact" className="px-cta px-cta-lime">
-                Contact us
-              </Link>
-            </div>
-          </div>
-        </section>
+        <CtaBand
+          title="Missing a channel you need?"
+          text="Tell us what you would like to connect and we will take a look."
+          primary={{ label: "Contact us", href: "/contact" }}
+        />
       </main>
 
       <Footer />

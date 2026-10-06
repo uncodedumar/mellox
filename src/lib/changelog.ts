@@ -1,7 +1,7 @@
 // Changelog content for /changelog. To add a release, put a new entry at the TOP of RELEASES.
 // (The page sorts by date, so the order here does not matter.) Each change has a type:
 //   "new" (a new feature), "improved" (something got better) or "fixed" (a bug fix).
-// `image` is optional: put the file in public/changelog/ and use "/changelog/your-image.png".
+// `image` is optional: put the file in public/changelog/ and use "/changelog/your-image.webp".
 //
 // NOTE: the entries below are SAMPLE content. Replace them with your real release notes.
 
@@ -20,6 +20,18 @@ export type Release = {
 };
 
 export const RELEASES: Release[] = [
+  {
+    date: "2026-10-06",
+    version: "v1.3",
+    title: "Autopilot, MCP and your favourite tools",
+    summary: "Mellox now runs the workflow for you, works inside Claude and ChatGPT, and plugs into Slack, Notion and Canva.",
+    changes: [
+      { type: "new", text: "Autopilot mode: Mellox does the work while you sit back and watch." },
+      { type: "new", text: "MCP connection: use Mellox from inside Claude and ChatGPT." },
+      { type: "new", text: "Slack and Notion integrations." },
+      { type: "new", text: "Every generated image can now be fully edited in Canva." },
+    ],
+  },
   {
     date: "2026-10-05",
     version: "v1.2",

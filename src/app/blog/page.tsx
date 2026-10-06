@@ -13,6 +13,7 @@ import "@/components/blog/blog.css";
 export const metadata: Metadata = {
   title: "Blog",
   description: "Guides, product news and ideas on AI search, GEO and marketing from the Mellox team.",
+  alternates: { canonical: "/blog" },
 };
 
 export default async function BlogPage() {

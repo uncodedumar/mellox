@@ -62,7 +62,8 @@ Most copy lives in `src/lib/`, not in components:
 
 - **Pricing**: `pricing.ts` (plans, FAQs) and `pricing-matrix.ts` (the comparison table). Feature, use-case and
   structured-data pages read from these, so numbers stay in sync.
-- **Product pages**: `features.tsx`. **Use cases**: `use-cases.tsx`. **Integrations**: `integrations.tsx`.
+- **Product pages**: `features.tsx`. A new feature also needs an illustration: add a `case` for its slug in
+  `components/features/FeatureVisual.tsx` (a test fails if you forget; the animated ones use `visual-motion.css`). **Use cases**: `use-cases.tsx`. **Integrations**: `integrations.tsx`.
   **Security and trust**: `security.tsx` (only state what is true; each claim notes its source).
 - **FAQs**: `faqs.ts`. **Changelog**: `changelog.ts` (add an entry at the top).
 - **Legal**: `terms.ts`, `privacy.ts`, `cookies-policy.ts` (drafts: have a lawyer review before launch).
@@ -95,10 +96,43 @@ the `ANTROSYS` entry in `use-cases.tsx` only with details the customer has appro
 
 ## Analytics and cookies
 
-Analytics scripts (GA4 and/or Plausible) load only when an id is set **and** the visitor accepts analytics cookies
-(consent store in `src/lib/consent.ts`, banner in `components/legal/CookieBanner.tsx`). Funnel clicks (`signup_click`,
-`demo_click`) and form leads (`generate_lead`) are reported through `trackEvent()` in `src/lib/analytics.ts`.
-If you turn analytics on, update the Cookie Policy text, which currently says no analytics cookies are loaded.
+Every tool is **off until its id is set**, and loads only after a visitor accepts the matching cookie category
+(consent store in `src/lib/consent.ts`, banner in `components/legal/CookieBanner.tsx`). Set the ids in `.env.local`
+locally and in your host's environment variables in production (see `.env.example`).
+
+| Tool | What it gives you | Cookie category | Env variable |
+| --- | --- | --- | --- |
+| Google Analytics 4 | Traffic, sources, conversions | Analytics | `NEXT_PUBLIC_GA_MEASUREMENT_ID` |
+| Plausible | Simple, privacy-friendly traffic stats | Analytics | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` |
+| Microsoft Clarity | Heatmaps and session replays | Analytics | `NEXT_PUBLIC_CLARITY_ID` |
+| Vercel Web Analytics | Visitors and page views, custom events | Analytics | automatic on Vercel (or `NEXT_PUBLIC_VERCEL_ANALYTICS=1`) |
+| Vercel Speed Insights | Real-user Core Web Vitals | Analytics | automatic on Vercel (or `NEXT_PUBLIC_VERCEL_ANALYTICS=1`) |
+| Meta Pixel | Ad conversions (Facebook, Instagram) | Marketing | `NEXT_PUBLIC_META_PIXEL_ID` |
+| LinkedIn Insight Tag | Ad conversions (LinkedIn) | Marketing | `NEXT_PUBLIC_LINKEDIN_PARTNER_ID` |
+| Search Console / Bing | Ownership verification, search data | none | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`, `NEXT_PUBLIC_BING_SITE_VERIFICATION` |
+
+On Vercel, also switch on **Analytics** and **Speed Insights** for the project in the Vercel dashboard, or they collect
+nothing. Vercel's logs and observability need no code.
+
+Funnel events (`signup_click`, `demo_click`, `generate_lead`) are sent to every loaded tool through `trackEvent()` in
+`src/lib/analytics.ts` (and mapped to Lead / Contact on Meta). The security policy (`src/lib/security-headers.ts`)
+already allows each tool's hosts; if you add another tool, add its hosts there too.
+**If you turn any of these on, update the Cookie Policy text**, which currently says no analytics cookies are loaded.
+
+## Smooth scrolling
+
+The whole site uses [Lenis](https://lenis.darkroom.engineering) (`components/SmoothScroll.tsx`, mounted once in
+`app/layout.tsx`). It keeps the browser's real scroll position, so all the scroll-driven sections (pinned intro, brains,
+workflow, dashboard tilt) work unchanged, just with smoother input.
+
+- **Feel:** tune `lerp` in `SmoothScroll.tsx` (lower = silkier and slower to catch up, higher = snappier; now `0.09`).
+  `wheelMultiplier` changes how far one wheel notch travels.
+- **Touch devices** keep native scrolling (`syncTouch: false`); **reduced motion** turns it off completely; it pauses
+  while the intro preloader holds the page (`html.mx-lock`).
+- **Scrolling to a position from code:** use `scrollToY(y)` from `lib/smooth-scroll.ts`, not
+  `window.scrollTo({ behavior: "smooth" })` (a test checks this). In-page `#links` already glide on their own.
+- **A new scrollable panel** (a dropdown, modal or sidebar with its own `overflow: auto`) needs the attribute
+  `data-lenis-prevent` on it, or the mouse wheel will scroll the page behind it instead.
 
 ## Security headers
 
@@ -113,6 +147,29 @@ Permissions-Policy and Cross-Origin-Opener-Policy.
   "Refused to ..." CSP errors.
 - `script-src` keeps `'unsafe-inline'` because Next.js inlines small bootstrap scripts; a nonce-based policy would force
   every page to render dynamically. HSTS is sent without `preload` on purpose.
+
+## Performance
+
+- **Images are WebP.** All photos, screenshots and logos in `public/` are `.webp` (the 2 MB founder photo is now about
+  45 KB). Only the PWA/app icons (`icon-*.png`, `apple-icon.png`) and the social cards stay PNG, because browsers and
+  social networks require that. When you add an image, convert it first (for example with
+  [Squoosh](https://squoosh.app) or `cwebp -q 80 in.jpg -o out.webp`), keep photos under about 1200px wide, and keep the
+  original out of `public/`. The `source-images/` folder holds the pre-conversion originals (local backup, git-ignored).
+- `next/image` is set to serve WebP only, cache optimised images for 30 days, and `public/` image folders send
+  `Cache-Control` headers. Rename a file when you replace it so visitors never see a stale copy.
+- Blog covers from Unsplash are requested at four widths (`srcset`), so a small card never downloads the full photo.
+- CSS that only the home page uses lives in the home components' own stylesheets, not in `globals.css`.
+- Fonts: Micro 5 is only used by the home "brains" section, so it is not preloaded on other pages.
+- **Measure a production build** without disturbing the dev server:
+  `NEXT_DIST_DIR=.next-build npm run build` (output goes to `.next-build/`, git-ignored). Next may add `.next-build`
+  paths to `tsconfig.json`; remove them again.
+
+## Site url (`NEXT_PUBLIC_SITE_URL`)
+
+Canonical links, social cards, structured data, the sitemap and `llms.txt` all use one value from `src/lib/seo.ts`.
+Set `NEXT_PUBLIC_SITE_URL=https://mellox.ai` on the production host. If it is missing, production falls back to
+`https://mellox.ai`, and a `localhost` value is ignored in production, so it cannot leak into the live site.
+In development it is `http://localhost:3000`.
 
 ## Accessibility
 
@@ -134,6 +191,7 @@ Permissions-Policy and Cross-Origin-Opener-Policy.
 - `security-headers`: the CSP and the other security headers, and that `X-Powered-By` stays off.
 - `app-url`: the hero website box passes the typed site on to the app.
 - `llms`: `llms.txt` / `llms-full.txt` structure and content, and the AI-crawler rules in `robots.txt`.
+- `smooth-scroll`: Lenis wiring (reduced motion, touch, preloader lock, scrollable panels, section buttons).
 
 There are no end-to-end browser tests yet. Visual and keyboard checks are done by hand in the browser.
 

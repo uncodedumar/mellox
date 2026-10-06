@@ -1,5 +1,9 @@
 import {
   BarChart3,
+  Bot,
+  Hash,
+  NotebookText,
+  PenTool,
   BellRing,
   Brain,
   CalendarClock,
@@ -33,7 +37,7 @@ import { MATRIX, MATRIX_COLUMNS, type Cell } from "./pricing-matrix";
 // Everything here is grounded in what the site already says (pricing, docs, about). Plan tables read from the pricing
 // matrix, so limits stay in sync with /pricing automatically.
 
-export type FeatureSlug = "brand-dna" | "ai-visibility" | "four-brains" | "distribution" | "agency-mode";
+export type FeatureSlug = "brand-dna" | "ai-visibility" | "four-brains" | "distribution" | "agency-mode" | "autopilot" | "connections";
 
 export type FeatureItem = { icon: LucideIcon; title: string; text: string; img?: string };
 
@@ -239,6 +243,10 @@ export const FEATURES: Feature[] = [
         q: "How do I connect my accounts?",
         a: "Connect each social account from your workspace, then schedule posts from the calendar. The docs walk through connecting accounts and scheduling.",
       },
+      {
+        q: "Can I edit the images before they go out?",
+        a: "Yes. Every image Mellox generates can be opened and fully edited in Canva.",
+      },
     ],
   },
   {
@@ -290,6 +298,96 @@ export const FEATURES: Feature[] = [
       {
         q: "Is white label available?",
         a: "The Agency command center is white label ready on the Agency and Scale plans.",
+      },
+    ],
+  },
+  {
+    slug: "autopilot",
+    name: "Autopilot",
+    hint: "Sit back and watch it work",
+    icon: Bot,
+    accent: "var(--brand-lime)",
+    headline: ["Sit back and watch", "Mellox do the work."],
+    lede: "Turn on Autopilot and Mellox runs your marketing workflow from planning to creating to publishing, while you sit back and see it all happen.",
+    metaDescription:
+      "Mellox Autopilot runs your marketing workflow for you, from planning and creating to publishing, in your brand voice, while you sit back and watch.",
+    steps: [
+      { title: "Turn it on", text: "Switch on Autopilot in your workspace. Mellox starts from your Brand DNA and your goals." },
+      { title: "Mellox does the work", text: "It plans the content, creates it in your voice and moves it through your workflow without you driving each step." },
+      { title: "You sit and see", text: "Watch it all come together in one workspace instead of juggling a strategy doc, a content tool and a scheduler." },
+    ],
+    itemsTitle: "What Autopilot handles",
+    itemsIntro: "The same workflow you would run by hand, run for you.",
+    items: [
+      { icon: Bot, title: "The whole workflow", text: "From planning to creating to publishing, Autopilot carries the work forward so you do not have to push every step." },
+      { icon: Dna, title: "Starts from your Brand DNA", text: "Everything Autopilot makes is built on your voice, audience and hard rules, so it sounds like you." },
+      { icon: Brain, title: "Guided by the four brains", text: "Brand, Customer, Competitor and Market Brain inform what gets made, so the work is specific and not generic." },
+      { icon: Send, title: "Across your channels", text: "Content is prepared for the channels you use, from LinkedIn and X to Instagram, TikTok and more." },
+      { icon: Radar, title: "Built to get cited", text: "Autopilot works toward being named by ChatGPT, Gemini and Perplexity, not only toward ranking in search." },
+      { icon: Eye, title: "See everything happen", text: "Follow the work in a single workspace, with results and AI answers brought back into one view." },
+    ],
+    table: {
+      title: "Autopilot on each plan",
+      intro: "Autopilot is part of the paid plans, alongside the publishing and planning tools it works with.",
+      rows: ["Autopilot mode", "Social posts published per month", "Campaign plans"],
+    },
+    faqs: [
+      {
+        q: "What is Autopilot mode?",
+        a: "Autopilot is a mode where Mellox does the work for you while you sit back and watch. It runs the workflow from planning to creating to publishing, instead of you driving each step.",
+      },
+      {
+        q: "Does Autopilot follow my Brand DNA?",
+        a: "Yes. Like everything Mellox creates, Autopilot starts from your Brand DNA, so the output matches your voice, audience and rules.",
+      },
+      {
+        q: "Which plans include Autopilot?",
+        a: "Autopilot is included on the paid plans: Starter, Growth, Agency and Scale. See the pricing page for the full comparison.",
+      },
+    ],
+  },
+  {
+    slug: "connections",
+    name: "Connections",
+    hint: "Claude, ChatGPT, Slack, Notion and Canva",
+    icon: Link2,
+    accent: "var(--brain-blue)",
+    headline: ["Work where you", "already work."],
+    lede: "Connect Mellox to Claude and ChatGPT over MCP, bring it into Slack and Notion, and edit every generated image in Canva.",
+    metaDescription:
+      "Connect Mellox to Claude and ChatGPT through MCP, to Slack and Notion, and edit every generated image in Canva.",
+    steps: [
+      { title: "Connect", text: "Connect Claude, ChatGPT, Slack, Notion or Canva from your workspace. You choose what Mellox can reach." },
+      { title: "Work from your tools", text: "Use Mellox from inside your assistant, and keep your team conversations and docs next to your marketing work." },
+      { title: "Polish in Canva", text: "Open any generated image in Canva and edit it fully before you use it." },
+    ],
+    itemsTitle: "Connected to the tools you already use",
+    itemsIntro: "Mellox meets you in the assistants and apps your team lives in.",
+    items: [
+      { icon: Bot, img: "/llms/claude.svg", title: "Claude, through MCP", text: "Connect Mellox to Claude over MCP and use your brand, content and AI visibility from inside the assistant." },
+      { icon: Bot, img: "/llms/openai.svg", title: "ChatGPT, through MCP", text: "Connect Mellox to ChatGPT over MCP and work with your marketing from the assistant you already use." },
+      { icon: Hash, img: "/logos/slack.webp", title: "Slack", text: "Bring Mellox into Slack so your marketing work sits alongside your team conversations." },
+      { icon: NotebookText, img: "/logos/notion.webp", title: "Notion", text: "Connect Notion so your docs and your marketing workflow stay close together." },
+      { icon: PenTool, img: "/logos/canva.webp", title: "Edit images in Canva", text: "Every image Mellox generates can be opened and fully edited in Canva, for the last ten percent of polish." },
+      { icon: ShieldCheck, title: "You choose what is connected", text: "Connect only what you need, and disconnect any account from your workspace settings at any time." },
+    ],
+    table: {
+      title: "Connections on each plan",
+      intro: "The assistants and apps you can connect, by plan.",
+      rows: ["MCP connection (Claude and ChatGPT)", "Slack and Notion", "Edit generated images in Canva"],
+    },
+    faqs: [
+      {
+        q: "What is the MCP connection with Claude and ChatGPT?",
+        a: "MCP, the Model Context Protocol, lets an AI assistant use outside tools. Connect Mellox to Claude and ChatGPT over MCP and you can work with your brand, content and AI visibility from inside the assistant you already use.",
+      },
+      {
+        q: "Does Mellox work with Slack and Notion?",
+        a: "Yes. You can connect Slack and Notion so your marketing workflow sits alongside your team conversations and docs.",
+      },
+      {
+        q: "Can I edit the images Mellox generates?",
+        a: "Yes. Every generated image can be opened and fully edited in Canva, so you can adjust layout, text and style before you use it.",
       },
     ],
   },

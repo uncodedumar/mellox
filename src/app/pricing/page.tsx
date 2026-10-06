@@ -14,11 +14,13 @@ import PricingTopups from "@/components/pricing/PricingTopups";
 import PricingTry from "@/components/pricing/PricingTry";
 import { PRICING_FAQS } from "@/lib/pricing";
 import "@/components/pricing/pricing.css";
+import WhatsNew from "@/components/whats-new/WhatsNew";
 
 export const metadata: Metadata = {
   title: "Pricing",
   description:
     "Simple plans, credits you control. Every Mellox plan includes all four marketing brains. Start free, upgrade when you are ready to publish.",
+  alternates: { canonical: "/pricing" },
 };
 
 const faqJsonLd = {
@@ -63,6 +65,7 @@ export default function PricingPage() {
 
       <main>
         <PricingPlans />
+        <WhatsNew title="New in Mellox" blurb="Included on the paid plans: Autopilot, Claude and ChatGPT over MCP, Slack and Notion, and Canva editing." />
         <PricingTry />
         <PricingTopups />
         <PricingMenu />

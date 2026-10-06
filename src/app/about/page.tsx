@@ -11,11 +11,14 @@ import SectionHead from "@/components/pricing/SectionHead";
 import { AUDIENCES, BRAINS, FOUNDERS, PRINCIPLES, STACK_REPLACED, STATS, STEPS } from "@/lib/about";
 import "@/components/pricing/pricing.css";
 import "@/components/about/about.css";
+import CtaBand from "@/components/cta/CtaBand";
+import WhatsNew from "@/components/whats-new/WhatsNew";
 
 export const metadata: Metadata = {
   title: "About",
   description:
     "Mellox is the AI marketing team that learns your brand, creates and publishes on-brand content, and gets you recommended by ChatGPT, Gemini and Perplexity.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {
@@ -204,6 +207,8 @@ export default function AboutPage() {
           </div>
         </section>
 
+        <WhatsNew title="New in Mellox" blurb="The newest ways Mellox works for you and with the tools you already use." />
+
         {/* Audiences */}
         <section id="who" className="px-section">
           <div className="px-inner">
@@ -236,24 +241,12 @@ export default function AboutPage() {
         </section>
 
         {/* Closing */}
-        <section className="px-section">
-          <div className="px-inner">
-            <div className="px-card ab-close" data-reveal>
-              <div>
-                <h2>See what AI says about your brand today.</h2>
-                <p>Start free, no card needed. Upgrade when you are ready to publish.</p>
-              </div>
-              <div className="btns">
-                <a href="https://app.mellox.ai" className="px-cta px-cta-lime">
-                  Start free
-                </a>
-                <Link href="/contact" className="px-cta hero-cta">
-                  Contact us
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CtaBand
+          title="See what AI says about your brand today."
+          text="Start free, no card needed. Upgrade when you are ready to publish."
+          primary={{ label: "Start free", href: "https://app.mellox.ai" }}
+          secondary={{ label: "Contact us", href: "/contact" }}
+        />
       </main>
 
       <Footer />

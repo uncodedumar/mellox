@@ -59,7 +59,7 @@
 
 /* ---------- pinned stage ---------- */
 .brains-pin {
-  --stage-h: clamp(540px, calc(100vh - 150px), 680px);
+  --stage-h: clamp(540px, calc(100svh - 150px), 680px);
   height: calc(var(--stage-h) + 3 * 85vh);
 }
 .brains-stage {
@@ -705,7 +705,7 @@
 /* ---------- small screens ---------- */
 @media (max-width: 900px) {
   .brains-pin {
-    --stage-h: clamp(620px, calc(100vh - 130px), 760px);
+    --stage-h: clamp(620px, calc(100svh - 130px), 760px);
   }
   .brains-stage {
     grid-template-columns: 1fr;
@@ -753,7 +753,7 @@
   }
 
   /* give the illustration more room: use the full phone height and tighten the copy above it */
-  .brains-pin { --stage-h: clamp(620px, calc(100vh - 96px), 728px); }
+  .brains-pin { --stage-h: clamp(620px, calc(100svh - 96px), 728px); }
   .bcard-copy { padding: 22px 22px 16px; }
   .bcard-copy p { margin-top: 12px; font-size: 14.5px; line-height: 1.5; }
   .bcard-tag { margin-top: 14px; padding: 9px 16px; font-size: 14px; }
@@ -783,4 +783,33 @@
   .intent, .shift-tag, .pulse-dot { opacity: 1 !important; }
   .plot .line { stroke-dashoffset: 0; }
   .plot .area { opacity: 1; }
+}
+
+/* ---------- short screens (landscape phones, small windows) ----------
+   The pinned stage needs ~540px of height. Below that it would be cut off, so
+   drop the pinning and simply stack the four cards. */
+@media (max-height: 620px) {
+  .brains-pin {
+    height: auto;
+  }
+  .brains-stage {
+    position: static;
+    display: block;
+    height: auto;
+  }
+  .brains-side {
+    display: none;
+  }
+  .brains-cards {
+    display: grid;
+    gap: 20px;
+  }
+  .bcard {
+    position: relative !important;
+    inset: auto;
+    min-height: 420px;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
 }

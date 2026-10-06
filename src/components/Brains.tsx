@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import "./brains.css";
+import { scrollToY } from "@/lib/smooth-scroll";
 
 /* ---------------- motion illustrations ---------------- */
 
@@ -242,7 +243,8 @@ export default function Brains() {
         const y = reduce ? (t[i] > 0 ? 0 : 100) : (1 - e) * 72;
         const scale = 1 - 0.05 * next;
         el.style.transform = `translate3d(${x}px, ${y}%, 0) scale(${scale})`;
-        el.style.opacity = String(clamp(e * 6) * (1 - 0.55 * next));
+        // small dead zone so an upcoming card never ghosts through before you scroll to it
+        el.style.opacity = String(clamp((t[i] - 0.05) * 7) * (1 - 0.55 * next));
         el.style.pointerEvents = t[i] > 0.6 && next < 0.4 ? "auto" : "none";
       });
 
@@ -270,7 +272,7 @@ export default function Brains() {
     const wrap = wrapRef.current;
     if (!wrap) return;
     const y = window.scrollY + wrap.getBoundingClientRect().top - STICKY_TOP + i * window.innerHeight * 0.85 + (i ? 4 : 0);
-    window.scrollTo({ top: y, behavior: "smooth" });
+    scrollToY(y);
   };
 
   return (

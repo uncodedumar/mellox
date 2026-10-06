@@ -192,6 +192,10 @@ export const STACK = {
 
 export const COMPARE_FAQS = [
   {
+    q: "Does Mellox work with Claude, ChatGPT, Slack, Notion and Canva?",
+    a: "Yes. Mellox connects to Claude and ChatGPT over MCP, to Slack and Notion, and every generated image can be edited in Canva. It also has an Autopilot mode that runs the workflow for you while you watch. These are newer than the 14 capabilities scored in the table.",
+  },
+  {
     q: "Which tools did you compare?",
     a: "Fifteen competitors in four groups: brand and content generators (Google Pomelli, Canva, Adobe Express, Klaviyo K:AI), AI marketing employee suites (Jasper, Copy.ai, Sintra AI, Okara), AEO and GEO visibility platforms (Profound, AthenaHQ, Scrunch AI, Peec AI, Otterly.ai) and agency or multi-location platforms (SOCi, Birdeye), compared with Mellox AI across the same 14 capabilities.",
   },

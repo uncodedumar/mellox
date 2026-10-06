@@ -15,7 +15,7 @@ export type PostMeta = {
   author?: string;
   authorRole?: string;
   tags?: string[];
-  /** Cover image path, e.g. "/blog/my-post/cover.png". Optional: a brand gradient is used when missing. */
+  /** Cover image path, e.g. "/blog/my-post/cover.webp". Optional: a brand gradient is used when missing. */
   cover?: string;
   coverAlt?: string;
   /** Photographer credit shown under the cover, e.g. { name: "Jane Doe", href: "https://unsplash.com/@jane" } */

@@ -78,6 +78,9 @@ export default function Faq({
     return () => io.disconnect();
   }, []);
 
+  // the standalone /faq page has no other h1, so its title is the page heading
+  const Heading = standalone ? "h1" : "h2";
+
   // two independent columns so opening one answer never stretches its neighbour
   const left = items.filter((_, i) => i % 2 === 0);
   const right = items.filter((_, i) => i % 2 === 1);
@@ -96,7 +99,7 @@ export default function Faq({
         <div className="faq-rule" data-reveal />
 
         <div className="faq-head">
-          <h2 data-reveal>{title}</h2>
+          <Heading data-reveal>{title}</Heading>
           <p data-reveal style={{ transitionDelay: "120ms" }}>
             {blurb}
           </p>

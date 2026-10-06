@@ -1,5 +1,6 @@
 // Content for /docs. Source: "Mellox AI_ Docs & FAQ.html".
 import { PRICING_FAQS } from "./pricing";
+import { NEW_FAQS } from "./whats-new";
 
 export type DocTopic = {
   id: string;
@@ -53,8 +54,24 @@ export const TOPICS: DocTopic[] = [
     keywords: "clients workspace brands portal share links white label multi client",
   },
   {
-    id: "billing",
+    id: "autopilot",
     n: 6,
+    title: "Autopilot",
+    blurb: "Turn on Autopilot and let Mellox run the workflow while you sit back and watch.",
+    color: "#cbe960",
+    keywords: "autopilot automatic hands off run for me automation workflow",
+  },
+  {
+    id: "connections",
+    n: 7,
+    title: "Connections",
+    blurb: "Connect Claude and ChatGPT over MCP, Slack and Notion, and edit generated images in Canva.",
+    color: "#4f8bff",
+    keywords: "mcp claude chatgpt slack notion canva connect integration edit image",
+  },
+  {
+    id: "billing",
+    n: 8,
     title: "Billing and credits",
     blurb: "What consumes credits, upgrading mid-cycle, and adding extra brand workspaces.",
     color: "#6b7a82",
@@ -92,6 +109,7 @@ export const DOC_FAQS: DocFaq[] = [
     a: "From your workspace switcher, create a new brand workspace. Growth includes 3 and Agency includes 10. Extra brands can be added on Growth, Agency and Scale for $39 a month each.",
     topic: "agency",
   },
+  ...NEW_FAQS.map((f, i) => ({ ...f, topic: i === 0 ? "autopilot" : "connections" })),
   { ...pricingFaq("What is a credit?"), topic: "billing" },
   { ...pricingFaq("Do unused credits roll over?"), topic: "billing" },
   {

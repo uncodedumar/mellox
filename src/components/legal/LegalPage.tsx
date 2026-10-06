@@ -45,7 +45,7 @@ export default function LegalPage({
       <main>
         <section className="px-section" style={{ paddingTop: 0 }}>
           <div className="px-inner lg-wrap">
-            <aside className="lg-toc" aria-label="On this page">
+            <aside className="lg-toc" data-lenis-prevent aria-label="On this page">
               <p>On this page</p>
               <ol>
                 {sections.map((s, i) => (

@@ -53,7 +53,7 @@ export const PRIVACY: TermsSection[] = [
     paras: ["We do not sell your personal information. We share it only in these cases:"],
     list: [
       "Service providers that help us run Mellox, such as hosting, AI model providers, payment processing, email delivery, analytics and customer support tools. They may use the data only to provide their service to us.",
-      "Platforms you connect, for example when we publish a post to a social account you linked.",
+      "Platforms and assistants you connect, for example a social account you linked, Claude or ChatGPT through MCP, Slack, Notion or Canva, only when you choose to connect them.",
       "Your team and clients, where you invite them to a workspace, client portal or share link.",
       "Professional advisers, regulators or authorities when required by law or to protect rights and safety.",
       "A buyer or successor if Mellox is involved in a merger, acquisition or sale of assets. We will tell you if your information is affected.",

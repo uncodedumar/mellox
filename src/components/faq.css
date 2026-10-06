@@ -44,6 +44,7 @@
   gap: 24px 56px;
   margin: clamp(32px, 4vw, 56px) 0 clamp(36px, 5vw, 76px);
 }
+.faq-head h1,
 .faq-head h2 {
   font-size: clamp(2.4rem, 5.4vw, 4.9rem);
   font-weight: 400;

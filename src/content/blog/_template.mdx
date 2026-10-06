@@ -5,7 +5,7 @@ export const meta = {
   author: "Mellox Team",
   authorRole: "Marketing", // optional
   tags: ["Tag one", "Tag two"],
-  cover: "/blog/your-post/cover.png", // optional. Put images in public/blog/your-post/
+  cover: "/blog/your-post/cover.webp", // optional. Put images in public/blog/your-post/
   coverAlt: "Describe the cover image", // optional
   // unlisted: true, // uncomment to hide it from the blog page (it still opens by url)
 };
@@ -15,7 +15,7 @@ export const meta = {
   1. Copy it to a new name. The file name is the url: my-post.mdx -> /blog/my-post
      (lowercase letters, numbers and dashes only). Files starting with "_" are ignored.
   2. Edit `meta` above, then write below. There is NO fixed order: mix anything, anywhere.
-  3. Put images in public/blog/<your-post>/ and use them as /blog/<your-post>/file.png
+  3. Put images in public/blog/<your-post>/ and use them as /blog/<your-post>/file.webp (WebP keeps pages fast)
 */}
 
 Normal paragraph text. You can use **bold**, *italic*, `inline code`, ~~strikethrough~~ and [links](https://example.com) anywhere.
@@ -28,9 +28,9 @@ Normal paragraph text. You can use **bold**, *italic*, `inline code`, ~~striketh
 
 Another paragraph. Start a block below with a heading, an image, a quote, whatever you like.
 
-![Alt text for a simple image](/Home/Hero.png)
+![Alt text for a simple image](/Home/Hero.webp)
 
-<Figure src="/Home/Hero.png" alt="Alt text" caption="A figure with a caption. Use size wide or full to make it bigger." size="wide" />
+<Figure src="/Home/Hero.webp" alt="Alt text" caption="A figure with a caption. Use size wide or full to make it bigger." size="wide" />
 
 - Bullet list
 - Another bullet
@@ -58,9 +58,9 @@ Another paragraph. Start a block below with a heading, an image, a quote, whatev
 <Gallery
   cols={3}
   images={[
-    { src: "/Home/Hero.png", alt: "One", caption: "First" },
-    { src: "/Home/Hero.png", alt: "Two", caption: "Second" },
-    { src: "/Home/Hero.png", alt: "Three", caption: "Third" },
+    { src: "/Home/Hero.webp", alt: "One", caption: "First" },
+    { src: "/Home/Hero.webp", alt: "Two", caption: "Second" },
+    { src: "/Home/Hero.webp", alt: "Three", caption: "Third" },
   ]}
 />
 

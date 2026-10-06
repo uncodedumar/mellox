@@ -359,6 +359,15 @@ export const MATRIX: MatrixGroup[] = [
     ]
   },
   {
+    "title": "Connections and automation",
+    "rows": [
+      { "label": "Autopilot mode", "values": [false, true, true, true, true] },
+      { "label": "MCP connection (Claude and ChatGPT)", "values": [false, true, true, true, true] },
+      { "label": "Slack and Notion", "values": [false, true, true, true, true] },
+      { "label": "Edit generated images in Canva", "values": [false, true, true, true, true] }
+    ]
+  },
+  {
     "title": "Support",
     "rows": [
       {

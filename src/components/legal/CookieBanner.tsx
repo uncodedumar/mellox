@@ -94,6 +94,7 @@ export default function CookieBanner() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="ck-title"
+            data-lenis-prevent
             className="ck-dialog"
           >
             <h2 id="ck-title">Cookie preferences</h2>

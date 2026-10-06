@@ -14,6 +14,7 @@ import "@/components/contact/contact.css";
 export const metadata: Metadata = {
   title: "Partner and collaboration",
   description: "Integration, agency, technology and co-marketing partnerships with Mellox.",
+  alternates: { canonical: "/contact/partner" },
 };
 
 export default function PartnerPage() {

@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { FEATURES, matrixRow } from "@/lib/features";
 import { MATRIX, MATRIX_COLUMNS } from "@/lib/pricing-matrix";
@@ -30,6 +32,13 @@ describe("feature pages", () => {
       for (const label of f.table.rows) {
         expect(() => matrixRow(label), `${f.slug}: ${label}`).not.toThrow();
       }
+    }
+  });
+
+  it("each have an illustration (otherwise the page shows an empty box under the hero)", () => {
+    const visual = readFileSync(path.join(process.cwd(), "src", "components", "features", "FeatureVisual.tsx"), "utf8");
+    for (const f of FEATURES) {
+      expect(visual, `FeatureVisual.tsx has no case for "${f.slug}"`).toContain(`case "${f.slug}":`);
     }
   });
 

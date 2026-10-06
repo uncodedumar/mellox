@@ -1,5 +1,6 @@
 import { Check, Link2, Sparkles } from "lucide-react";
 import type { FeatureSlug } from "@/lib/features";
+import "./visual-motion.css";
 
 /** Product illustration for each feature page. Static, decorative UI cards built from the brand palette. */
 
@@ -177,8 +178,114 @@ function AgencyMode() {
   );
 }
 
+/**
+ * Autopilot: a looping, CSS-only animation. The four workflow steps light up one after another while a feed shows what
+ * Mellox is doing right now. (All timing lives in features.css, `.ap-*`; it stops for reduced-motion users.)
+ */
+function Autopilot() {
+  const steps = ["Plan", "Create", "Approve", "Publish"];
+  const feed = [
+    { icon: "linkedin", text: "Planning next week's content from your goals", tag: "Planning" },
+    { icon: "instagram", text: "Drafting a carousel in your Brand DNA voice", tag: "Creating" },
+    { icon: "x", text: "Thread ready for your approval", tag: "Approval" },
+    { icon: "tiktok", text: "Scheduled for Tuesday at 9:00", tag: "Publishing" },
+  ];
+  return (
+    <div className="ft-vis ft-vis-1">
+      <div className="ft-card ft-wide ap">
+        <div className="ap-head">
+          <h4>Autopilot</h4>
+          <span className="ap-on">
+            <i aria-hidden="true" />
+            Running
+          </span>
+        </div>
+
+        <ol className="ap-steps" aria-label="Autopilot workflow">
+          {steps.map((s, i) => (
+            <li key={s} style={{ ["--i" as string]: i }}>
+              <span className="ap-dot">{i + 1}</span>
+              <b>{s}</b>
+            </li>
+          ))}
+        </ol>
+
+        <ul className="ap-feed">
+          {feed.map((f, i) => (
+            <li key={f.tag} style={{ ["--i" as string]: i }}>
+              <Icon name={f.icon} size={20} />
+              <span>{f.text}</span>
+              <em>{f.tag}</em>
+              <i className="ap-bar" aria-hidden="true" />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Connections: Mellox in the middle, assistants on the left and apps on the right, with a pulse of data travelling along
+ * each link. Lines are an SVG overlay (percent coordinates); nodes are absolutely positioned on the same grid.
+ */
+function Connections() {
+  const hub = { x: 50, y: 50 };
+  const nodes = [
+    { name: "Claude", note: "MCP", x: 13, y: 24, img: "/llms/claude.svg", invert: true },
+    { name: "ChatGPT", note: "MCP", x: 13, y: 76, img: "/llms/openai.svg", invert: true },
+    { name: "Slack", note: "Team chat", x: 87, y: 17, img: "/logos/slack.webp" },
+    { name: "Notion", note: "Docs", x: 87, y: 50, img: "/logos/notion.webp" },
+    { name: "Canva", note: "Edit images", x: 87, y: 83, img: "/logos/canva.webp" },
+  ];
+  return (
+    <div className="ft-vis ft-vis-1 cn-wrap">
+      <div className="cn" role="img" aria-label="Mellox connected to Claude, ChatGPT, Slack, Notion and Canva">
+        <svg viewBox="0 0 200 100" aria-hidden="true">
+          {nodes.map((n, i) => (
+            <g key={n.name}>
+              <line x1={hub.x * 2} y1={hub.y} x2={n.x * 2} y2={n.y} className="cn-link" />
+              <line
+                x1={hub.x * 2}
+                y1={hub.y}
+                x2={n.x * 2}
+                y2={n.y}
+                pathLength={100}
+                className={`cn-pulse${i < 2 ? " in" : ""}`}
+                style={{ ["--i" as string]: i }}
+              />
+            </g>
+          ))}
+        </svg>
+
+        <div className="cn-hub" style={{ left: `${hub.x}%`, top: `${hub.y}%` }}>
+          <span className="cn-ring r1" />
+          <span className="cn-ring r2" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/mark-lime.svg" alt="" width={54} height={28} />
+        </div>
+
+        {nodes.map((n, i) => (
+          <div key={n.name} className="cn-node" style={{ left: `${n.x}%`, top: `${n.y}%`, ["--i" as string]: i }}>
+            <span className="cn-logo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={n.img} alt="" width={30} height={30} className={n.invert ? "inv" : undefined} />
+            </span>
+            <b>{n.name}</b>
+            <em>{n.note}</em>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function FeatureVisual({ slug }: { slug: FeatureSlug }) {
   switch (slug) {
+    case "autopilot":
+      return <Autopilot />;
+    case "connections":
+      return <Connections />;
     case "brand-dna":
       return <BrandDna />;
     case "ai-visibility":

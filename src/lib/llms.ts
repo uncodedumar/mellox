@@ -16,7 +16,7 @@ import { USE_CASES } from "./use-cases";
 const abs = (p: string) => `${SITE_URL}${p}`;
 
 export const SUMMARY =
-  "Mellox AI is an AI marketing platform for agencies and startups. It learns a brand from its website (Brand DNA), plans and creates on-brand content, publishes it natively to social channels after human approval, and tracks and improves how AI assistants such as ChatGPT, Gemini and Perplexity describe the brand (GEO and AEO).";
+  "Mellox AI is an AI marketing platform for agencies and startups. It learns a brand from its website (Brand DNA), plans and creates on-brand content, publishes it natively to social channels after human approval, and tracks and improves how AI assistants such as ChatGPT, Gemini and Perplexity describe the brand (GEO and AEO). It also offers an Autopilot mode that runs the workflow for the customer, an MCP connection to Claude and ChatGPT, Slack and Notion integrations, and editing of generated images in Canva.";
 
 const priceLine = (p: (typeof PLANS)[number]) => (p.monthly === null ? "custom pricing" : `$${p.monthly} per month`);
 
@@ -36,7 +36,7 @@ export function buildLlmsTxt(posts: PostIndexEntry[]): string {
 
   add("## Product");
   for (const f of FEATURES) add(`- [${f.name}](${abs(`/features/${f.slug}`)}): ${f.metaDescription}`);
-  add(`- [Integrations](${abs("/integrations")}): Connect Google Analytics and Search Console, Meta, LinkedIn, X, TikTok, YouTube, Pinterest, Reddit, WordPress, Webflow and GitHub.`);
+  add(`- [Integrations](${abs("/integrations")}): Connect Claude and ChatGPT over MCP, Slack, Notion, Canva, Google Analytics and Search Console, Meta, LinkedIn, X, TikTok, YouTube, Pinterest, Reddit, WordPress, Webflow and GitHub.`);
   add();
 
   add("## Who it is for");

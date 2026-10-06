@@ -8,11 +8,13 @@ import PricingHeroBackground from "@/components/pricing/PricingHeroBackground";
 import PricingReveal from "@/components/pricing/PricingReveal";
 import { DOC_FAQS } from "@/lib/docs";
 import "@/components/pricing/pricing.css";
+import CtaBand from "@/components/cta/CtaBand";
 
 export const metadata: Metadata = {
   title: "Docs and FAQ",
   description:
     "Guides and answers for setting up Brand DNA, running GEO and AEO audits, publishing content and managing agency clients in Mellox.",
+  alternates: { canonical: "/docs" },
 };
 
 const faqJsonLd = {
@@ -52,19 +54,12 @@ export default function DocsPage() {
       <main>
         <DocsExplorer />
 
-        <section className="px-section">
-          <div className="px-inner">
-            <div className="px-card dx-support" data-reveal>
-              <div>
-                <h2>Still stuck? We are one message away.</h2>
-                <p>Email the team and a human will get back to you. Paid plans get faster replies.</p>
-              </div>
-              <a href="mailto:support@mellox.ai" className="px-cta px-cta-lime">
-                Contact support
-              </a>
-            </div>
-          </div>
-        </section>
+        <CtaBand
+          title="Still stuck? We are one message away."
+          text="Email the team and a human will get back to you. Paid plans get faster replies."
+          primary={{ label: "Contact support", href: "mailto:support@mellox.ai" }}
+          secondary={{ label: "Contact page", href: "/contact" }}
+        />
       </main>
 
       <Footer />

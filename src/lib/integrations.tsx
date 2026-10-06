@@ -1,4 +1,5 @@
 import { BarChart3, Code2, Globe, Search, Wrench, type LucideIcon } from "lucide-react";
+import { NEW_FAQS } from "./whats-new";
 
 // Content for /integrations. Grounded in what the site already states: the channels Mellox publishes to,
 // the AI engines it tracks, GA4 and Search Console insights, CMS fixes (WordPress, Webflow) and GitHub PR fixes.
@@ -8,6 +9,8 @@ export type Integration = {
   name: string;
   /** file name (without .svg) in /public/llms, if there is a logo */
   logo?: string;
+  /** full colour logo path (in /public), shown as is instead of the white mono treatment */
+  image?: string;
   /** lucide icon used when there is no logo file */
   icon?: LucideIcon;
   text: string;
@@ -24,6 +27,52 @@ export type IntegrationGroup = {
 };
 
 export const GROUPS: IntegrationGroup[] = [
+  {
+    id: "assistants",
+    title: "Claude and ChatGPT (MCP)",
+    intro: "Use Mellox from the AI assistants you already work in, through MCP.",
+    accent: "#d97757",
+    items: [
+      {
+        name: "Claude",
+        logo: "claude",
+        text: "Connect Mellox to Claude over MCP and work with your brand, content and AI visibility from inside the assistant.",
+        plan: "Paid plans",
+      },
+      {
+        name: "ChatGPT",
+        logo: "openai",
+        text: "Connect Mellox to ChatGPT over MCP and use your marketing workflow from the assistant you already use.",
+        plan: "Paid plans",
+      },
+    ],
+  },
+  {
+    id: "workapps",
+    title: "Slack, Notion and Canva",
+    intro: "Bring Mellox into the apps your team already works in, and finish your images in Canva.",
+    accent: "var(--brain-purple)",
+    items: [
+      {
+        name: "Slack",
+        image: "/logos/slack.webp",
+        text: "Bring Mellox into Slack so your marketing work sits alongside your team conversations.",
+        plan: "Paid plans",
+      },
+      {
+        name: "Notion",
+        image: "/logos/notion.webp",
+        text: "Connect Notion so your docs and your marketing workflow stay close together.",
+        plan: "Paid plans",
+      },
+      {
+        name: "Canva",
+        image: "/logos/canva.webp",
+        text: "Open any image Mellox generates and edit it fully in Canva before you use it.",
+        plan: "Paid plans",
+      },
+    ],
+  },
   {
     id: "google",
     title: "Google",
@@ -121,6 +170,7 @@ export const STEPS = [
 ];
 
 export const FAQS = [
+  ...NEW_FAQS.slice(1),
   {
     q: "Does Mellox publish anything without my approval?",
     a: "No. Every generated draft lands in a Needs Approval queue. Nothing schedules or publishes until you review and confirm it.",

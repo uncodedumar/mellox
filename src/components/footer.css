@@ -97,10 +97,12 @@
   display: flex;
   justify-content: center;
   gap: 0.28em;
-  font-size: clamp(76px, 15.6vw, 290px);
-  font-weight: 600;
-  line-height: 0.9;
-  letter-spacing: -0.045em;
+  /* Michroma is very wide and only has one weight, so the size is tuned to keep the old footprint */
+  font-family: var(--font-michroma), var(--font-google-sans-flex), sans-serif;
+  font-size: clamp(48px, 9.9vw, 190px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
   white-space: nowrap;
   user-select: none;
   pointer-events: none;
@@ -153,12 +155,15 @@
 .mx-links ul {
   display: flex;
   flex-direction: column;
-  gap: clamp(14px, 1.5vw, 22px);
+  gap: clamp(2px, 0.5vw, 8px);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .mx-links a {
+  /* padding gives a comfortable 32px+ tap target without changing the visual rhythm */
+  display: inline-block;
+  padding: 7px 0;
   font-size: clamp(15px, 1.3vw, 19px);
   color: rgb(255 255 255 / 0.62);
   transition: color 0.2s ease;
@@ -183,7 +188,8 @@
 }
 .mx-bottom a {
   display: inline-block;
-  margin-top: 30px;
+  padding: 8px 0;
+  margin-top: 22px;
   font-size: 15px;
   color: rgb(255 255 255 / 0.35);
   transition: color 0.2s ease;
@@ -197,7 +203,8 @@
 
 .mx-cookie-btn {
   display: inline-block;
-  margin-top: 30px;
+  padding: 9px 0;
+  margin-top: 22px;
   font-size: 15px;
   color: rgb(255 255 255 / 0.35);
   transition: color 0.2s ease;

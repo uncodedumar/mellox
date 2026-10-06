@@ -1,0 +1,207 @@
+/* ---------- Animated illustrations: Autopilot and Connections (CSS only, no JavaScript) ---------- */
+
+/* ===== Autopilot: four steps light up in turn (8s loop, 2s each) while a feed shows what Mellox is doing ===== */
+.ap { --cycle: 8s; }
+.ap-head { display: flex; align-items: center; justify-content: space-between; }
+.ap-on {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 13px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #11170a;
+  background: var(--brand-lime);
+  box-shadow: 0 0 24px -4px rgb(203 233 96 / 0.7);
+}
+.ap-on i { width: 8px; height: 8px; border-radius: 50%; background: #11170a; animation: ap-pulse 1.4s ease-in-out infinite; }
+@keyframes ap-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.65); } }
+
+.ap-steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 10px 0 6px;
+  padding: 0;
+  list-style: none;
+}
+/* track + progress fill run through the centre of the numbered dots */
+.ap-steps::before,
+.ap-steps::after {
+  content: "";
+  position: absolute;
+  top: 19px;
+  left: 12.5%;
+  height: 2px;
+  border-radius: 2px;
+}
+.ap-steps::before { right: 12.5%; background: rgb(255 255 255 / 0.12); }
+.ap-steps::after {
+  width: 75%;
+  background: linear-gradient(90deg, var(--brand-lime), #fff);
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: ap-fill var(--cycle) ease-in-out infinite;
+}
+@keyframes ap-fill {
+  0%, 2% { transform: scaleX(0); opacity: 1; }
+  78% { transform: scaleX(1); opacity: 1; }
+  94% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+
+.ap-steps li {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+}
+.ap-steps b { font-size: 14px; font-weight: 500; color: #8b97c2; animation: ap-label var(--cycle) linear infinite; animation-delay: calc(var(--i) * 2s); }
+.ap-dot {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 600;
+  color: #aab4dc;
+  background: #0d1118;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  animation: ap-dot var(--cycle) ease-in-out infinite;
+  animation-delay: calc(var(--i) * 2s);
+}
+@keyframes ap-dot {
+  0%, 100% { transform: scale(1); color: #aab4dc; background: #0d1118; border-color: rgb(255 255 255 / 0.18); box-shadow: none; }
+  3%, 22% { transform: scale(1.14); color: #11170a; background: var(--brand-lime); border-color: var(--brand-lime); box-shadow: 0 0 28px rgb(203 233 96 / 0.65); }
+  27% { transform: scale(1); color: #11170a; background: color-mix(in srgb, var(--brand-lime) 55%, #0d1118); border-color: rgb(203 233 96 / 0.6); box-shadow: none; }
+  96% { color: #11170a; background: color-mix(in srgb, var(--brand-lime) 55%, #0d1118); border-color: rgb(203 233 96 / 0.6); }
+}
+@keyframes ap-label { 0%, 100% { color: #8b97c2; } 3%, 24% { color: #fff; } 28%, 96% { color: #c3cbea; } }
+
+.ap-feed { display: flex; flex-direction: column; gap: 10px; margin: 6px 0 0; padding: 0; list-style: none; }
+.ap-feed li {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  border-radius: 14px;
+  font-size: 15.5px;
+  color: #e7ecff;
+  background: rgb(255 255 255 / 0.04);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  opacity: 0.5;
+  animation: ap-row var(--cycle) ease-in-out infinite;
+  animation-delay: calc(var(--i) * 2s);
+}
+.ap-feed img { filter: brightness(0) invert(1); opacity: 0.9; }
+.ap-feed em { font-style: normal; font-size: 12.5px; font-weight: 600; padding: 4px 11px; border-radius: 999px; color: #cfd7f5; background: rgb(255 255 255 / 0.08); white-space: nowrap; }
+@keyframes ap-row {
+  0%, 100% { opacity: 0.5; background: rgb(255 255 255 / 0.04); border-color: rgb(255 255 255 / 0.08); transform: translateX(0); }
+  3%, 22% { opacity: 1; background: rgb(203 233 96 / 0.1); border-color: rgb(203 233 96 / 0.5); transform: translateX(6px); }
+  27% { opacity: 0.7; background: rgb(255 255 255 / 0.04); border-color: rgb(255 255 255 / 0.08); transform: translateX(0); }
+}
+.ap-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--brand-lime);
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: ap-bar var(--cycle) linear infinite;
+  animation-delay: calc(var(--i) * 2s);
+}
+@keyframes ap-bar { 0%, 100% { transform: scaleX(0); } 3% { transform: scaleX(0); } 24% { transform: scaleX(1); } 25%, 99% { transform: scaleX(0); } }
+
+@media (max-width: 560px) {
+  .ap-feed li { grid-template-columns: 22px minmax(0, 1fr); }
+  .ap-feed em { display: none; }
+  .ap-steps b { font-size: 12.5px; }
+}
+
+/* ===== Connections: Mellox in the middle, data pulses travelling along each link ===== */
+.cn-wrap { grid-template-columns: minmax(0, 880px); }
+.cn { position: relative; width: 100%; aspect-ratio: 2 / 1; }
+.cn svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.cn-link { stroke: rgb(255 255 255 / 0.16); stroke-width: 0.5; }
+.cn-pulse {
+  stroke: var(--brand-lime);
+  stroke-width: 0.9;
+  stroke-linecap: round;
+  stroke-dasharray: 9 91;
+  filter: drop-shadow(0 0 1.5px rgb(203 233 96 / 0.9));
+  animation: cn-flow 2.8s linear infinite;
+  animation-delay: calc(var(--i) * -0.55s);
+}
+.cn-pulse.in { animation-direction: reverse; } /* assistants send requests in, apps receive results out */
+@keyframes cn-flow { from { stroke-dashoffset: 9; } to { stroke-dashoffset: -91; } }
+
+.cn-hub {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: clamp(64px, 11vw, 96px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 50% 35%, #1b2410, #090c0e 70%);
+  border: 1px solid rgb(203 233 96 / 0.55);
+  box-shadow: 0 0 50px -6px rgb(203 233 96 / 0.55), inset 0 0 22px rgb(203 233 96 / 0.18);
+}
+.cn-hub img { width: 56%; height: auto; }
+.cn-ring { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgb(203 233 96 / 0.6); animation: cn-ring 3.2s ease-out infinite; }
+.cn-ring.r2 { animation-delay: 1.6s; }
+@keyframes cn-ring { from { transform: scale(1); opacity: 0.8; } to { transform: scale(2.1); opacity: 0; } }
+
+.cn-node {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  animation: cn-float 5s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.9s);
+}
+@keyframes cn-float { 0%, 100% { translate: 0 -3px; } 50% { translate: 0 3px; } }
+.cn-logo {
+  display: grid;
+  place-items: center;
+  width: clamp(40px, 6.4vw, 60px);
+  aspect-ratio: 1;
+  margin-bottom: 4px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgb(255 255 255 / 0.12), rgb(255 255 255 / 0.04));
+  border: 1px solid rgb(255 255 255 / 0.16);
+  box-shadow: 0 14px 30px -14px rgb(0 0 0 / 0.9), inset 0 1px 0 rgb(255 255 255 / 0.12);
+  backdrop-filter: blur(10px);
+}
+.cn-logo img { width: 58%; height: 58%; object-fit: contain; }
+.cn-logo img.inv { filter: brightness(0) invert(1); }
+.cn-node b { font-size: 14.5px; font-weight: 500; color: #fff; }
+.cn-node em { font-style: normal; font-size: 12px; color: #8b97c2; }
+@media (max-width: 560px) {
+  .cn-node b, .cn-node em { display: none; }
+  .cn-logo { border-radius: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ap-on i, .ap-steps::after, .ap-steps b, .ap-dot, .ap-feed li, .ap-bar,
+  .cn-pulse, .cn-ring, .cn-node { animation: none; }
+  .ap-steps::after { transform: scaleX(0.34); }
+  .ap-feed li { opacity: 1; }
+  .ap-dot { color: #11170a; background: var(--brand-lime); border-color: var(--brand-lime); }
+  .ap-steps li:not(:first-child) .ap-dot { color: #aab4dc; background: #0d1118; border-color: rgb(255 255 255 / 0.18); }
+  .cn-ring { display: none; }
+}

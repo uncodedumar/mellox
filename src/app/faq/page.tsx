@@ -9,6 +9,7 @@ import { faqJsonLd } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "FAQ",
   description: "Answers to common questions about Mellox, the AI marketing platform.",
+  alternates: { canonical: "/faq" },
 };
 
 export default function FaqPage() {
@@ -23,7 +24,7 @@ export default function FaqPage() {
         blurb="Everything you need to know about how Mellox works."
       />
       <div className="bg-[#030405] pb-20 text-center">
-        <Link href="/" className="text-[15px] text-white/60 underline decoration-white/25 underline-offset-4 transition-colors hover:text-lime">
+        <Link href="/" className="inline-block py-3 text-[15px] text-white/60 underline decoration-white/25 underline-offset-4 transition-colors hover:text-lime">
           Back to home
         </Link>
       </div>

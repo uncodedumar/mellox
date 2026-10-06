@@ -9,10 +9,12 @@ import { formatDate } from "@/lib/blog";
 import { CHANGE_LABEL, RELEASES, type ChangeType } from "@/lib/changelog";
 import "@/components/pricing/pricing.css";
 import "@/components/changelog/changelog.css";
+import CtaBand from "@/components/cta/CtaBand";
 
 export const metadata: Metadata = {
   title: "Changelog",
   description: "Everything new in Mellox: product updates, improvements and fixes, newest first.",
+  alternates: { canonical: "/changelog" },
 };
 
 const ORDER: ChangeType[] = ["new", "improved", "fixed"];
@@ -79,19 +81,11 @@ export default function ChangelogPage() {
           </div>
         </section>
 
-        <section className="px-section">
-          <div className="px-inner">
-            <div className="px-card cl-cta" data-reveal>
-              <div>
-                <h2>Got an idea or found a bug?</h2>
-                <p>We read every message and ship fixes and ideas often. Tell us what would make Mellox better.</p>
-              </div>
-              <a href="/contact" className="px-cta px-cta-lime">
-                Contact us
-              </a>
-            </div>
-          </div>
-        </section>
+        <CtaBand
+          title="Got an idea or found a bug?"
+          text="We read every message and ship fixes and ideas often. Tell us what would make Mellox better."
+          primary={{ label: "Contact us", href: "/contact" }}
+        />
       </main>
 
       <Footer />

@@ -201,7 +201,7 @@ export default function IntroSection() {
       <a href="#after-intro" className="skip-link">
         Skip this animated section
       </a>
-      <div ref={stageRef} className="sticky top-0 h-screen overflow-hidden">
+      <div ref={stageRef} className="sticky top-0 h-[100svh] overflow-hidden">
         <div className="grain-tex pointer-events-none absolute inset-0" aria-hidden="true" />
         {/* colour field (outside the track so it can glide to the centre) */}
         <div ref={fieldRef} className="color-field" aria-hidden="true">

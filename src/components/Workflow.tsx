@@ -3,6 +3,7 @@
 import { Check, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import "./workflow.css";
+import { scrollToY } from "@/lib/smooth-scroll";
 
 /* ------------------------------------------------------------------ */
 /* motion illustrations (UI mocks). They only animate while active.    */
@@ -422,7 +423,7 @@ export default function Workflow() {
     const wrap = wrapRef.current;
     if (!wrap) return;
     const y = window.scrollY + wrap.getBoundingClientRect().top - STICKY_TOP + i * window.innerHeight * 0.8 + (i ? 6 : 0);
-    window.scrollTo({ top: y, behavior: "smooth" });
+    scrollToY(y);
   };
 
   return (

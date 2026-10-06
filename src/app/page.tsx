@@ -15,11 +15,14 @@ import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import { FEATURED, faqs } from "@/lib/faqs";
 import { faqJsonLd } from "@/lib/seo";
+import PricingReveal from "@/components/pricing/PricingReveal";
+import WhatsNew from "@/components/whats-new/WhatsNew";
+import "@/components/pricing/pricing.css";
 
 export const metadata: Metadata = {
   title: { absolute: "Mellox AI: Don't just rank. Be recommended." },
   description:
-    "Mellox is the AI marketing assistant for agencies and startups. It learns your brand from your website, creates and publishes on-brand content, and works to get you recommended by ChatGPT, Gemini and Perplexity.",
+    "AI marketing assistant for agencies and startups. Mellox learns your brand, publishes on-brand content and gets you recommended by ChatGPT and Gemini.",
   alternates: { canonical: "/" },
 };
 
@@ -75,6 +78,15 @@ export default function Home() {
       <Brains />
 
       <Workflow />
+
+      {/* New capabilities: reuses the pricing page design tokens through the .px wrapper */}
+      <div className="px">
+        <PricingReveal />
+        <WhatsNew
+          title="Now with Autopilot and your favourite tools."
+          blurb="Autopilot mode, Claude and ChatGPT over MCP, Slack and Notion, and Canva editing."
+        />
+      </div>
 
       <Testimonials />
 

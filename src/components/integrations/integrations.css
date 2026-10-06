@@ -52,6 +52,8 @@
   border: 1px solid rgb(255 255 255 / 0.1);
 }
 .ig-logo img { filter: brightness(0) invert(1); opacity: 0.92; }
+/* full colour brand logos keep their own colours */
+.ig-logo img.ig-img { filter: none; opacity: 1; width: 34px; height: 34px; object-fit: contain; }
 .ig-plan {
   padding: 4px 12px;
   border-radius: 999px;

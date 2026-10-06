@@ -44,26 +44,3 @@
 .dm-alt { font-size: 16px; line-height: 1.65; color: #8b97c2; }
 .dm-alt a { color: var(--brand-lime); text-decoration: underline; text-underline-offset: 4px; }
 
-/* "Book a demo" strip used on pricing and compare */
-.dm-cta {
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px 40px;
-  padding: clamp(28px, 4vw, 56px);
-}
-.dm-cta h2 { max-width: 22ch; font-size: clamp(1.7rem, 3.4vw, 2.8rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.1; }
-.dm-cta p { max-width: 52ch; margin-top: 10px; font-size: 17px; line-height: 1.55; color: #9aa7cf; }
-.dm-cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-.dm-cta-actions .px-cta { margin-top: 0; padding-inline: 34px; }
-.dm-ghost {
-  padding: 16px 28px;
-  border-radius: 999px;
-  font-size: 17px;
-  font-weight: 600;
-  color: #fff;
-  border: 1px solid rgb(255 255 255 / 0.25);
-  transition: background-color 0.25s, border-color 0.25s;
-}
-.dm-ghost:hover { background: rgb(255 255 255 / 0.08); border-color: rgb(255 255 255 / 0.45); }

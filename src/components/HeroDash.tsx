@@ -103,7 +103,7 @@ export default function HeroDash() {
   return (
     <div ref={ref} className="hero-dash relative">
       <Image
-        src="/Home/Hero.png"
+        src="/Home/Hero.webp"
         alt="Mellox AI workspace: Good afternoon, what should we work on today?"
         width={1917}
         height={1078}
@@ -113,7 +113,7 @@ export default function HeroDash() {
       />
       {/* same shot at full strength, revealed only inside the cursor circle */}
       <Image
-        src="/Home/Hero.png"
+        src="/Home/Hero.webp"
         alt=""
         aria-hidden
         width={1917}

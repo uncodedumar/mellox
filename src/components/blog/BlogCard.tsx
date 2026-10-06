@@ -18,7 +18,12 @@ export default function BlogCard({ post, featured = false }: { post: CardPost; f
   return (
     <Link href={`/blog/${post.slug}`} className={`bl-card${featured ? " bl-card-featured" : ""}`}>
       <div className="bl-card-cover">
-        <BlogCover slug={post.slug} cover={post.cover} alt={post.coverAlt} />
+        <BlogCover
+          slug={post.slug}
+          cover={post.cover}
+          alt={post.coverAlt}
+          sizes={featured ? "(max-width: 860px) 100vw, 55vw" : undefined}
+        />
       </div>
       <div className="bl-card-body">
         {post.tags && post.tags.length > 0 && (

@@ -13,7 +13,7 @@ export type UseCaseSlug = "agencies" | "startups" | "in-house-teams";
  */
 export type CaseStory = {
   company: string;
-  /** public path, e.g. "/about/antrosys%20ceo.jpg" */
+  /** public path, e.g. "/about/antrosys-ceo.webp" */
   photo?: string;
   person?: string;
   role?: string;
@@ -46,7 +46,7 @@ export type UseCase = {
 // (with Antrosys' approval) and the case-study block appears automatically.
 export const ANTROSYS: CaseStory = {
   company: "Antrosys",
-  photo: "/about/antrosys%20ceo.jpg",
+  photo: "/about/antrosys-ceo.webp",
 };
 
 export const USE_CASES: UseCase[] = [

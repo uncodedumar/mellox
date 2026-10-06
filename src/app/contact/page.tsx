@@ -15,6 +15,7 @@ import "@/components/contact/contact.css";
 export const metadata: Metadata = {
   title: "Contact and support",
   description: "Talk to a human, or just send us a message. Reach the Mellox team for support, billing, agency onboarding and Scale plan pricing.",
+  alternates: { canonical: "/contact" },
 };
 
 const CHANNELS = [

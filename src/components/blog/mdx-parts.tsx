@@ -57,13 +57,13 @@ export function A({ href = "", children, ...rest }: ComponentPropsWithoutRef<"a"
   );
 }
 
-/** Markdown images `![alt](/blog/x.png)` work anywhere; they take the full reading width. */
+/** Markdown images `![alt](/blog/x.webp)` work anywhere; they take the full reading width. */
 export function Img({ alt = "", ...rest }: ComponentPropsWithoutRef<"img">) {
   // eslint-disable-next-line @next/next/no-img-element
   return <img alt={alt} loading="lazy" decoding="async" {...rest} />;
 }
 
-/** `<Figure src="/blog/x.png" alt="..." caption="..." size="wide" />`. size: "text" (default) | "wide" | "full". */
+/** `<Figure src="/blog/x.webp" alt="..." caption="..." size="wide" />`. size: "text" (default) | "wide" | "full". */
 export function Figure({
   src,
   alt = "",

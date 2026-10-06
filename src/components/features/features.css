@@ -303,8 +303,3 @@
 .ft-more-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 60%, transparent); }
 .ft-more-card h3 { font-size: 1.15rem; font-weight: 500; letter-spacing: -0.02em; color: #fff; }
 .ft-more-card p { font-size: 15px; color: #8b97c2; }
-
-.ft-cta { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 40px; padding: clamp(28px, 4vw, 56px); }
-.ft-cta h2 { max-width: 20ch; font-size: clamp(1.7rem, 3.4vw, 2.8rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.1; }
-.ft-cta p { margin-top: 10px; font-size: 17px; color: #9aa7cf; }
-.ft-cta .px-cta { margin-top: 0; padding-inline: 40px; }
