@@ -3,7 +3,11 @@
 
 export const TERMS_UPDATED = "5 October 2026";
 
-export type TermsSection = { id: string; title: string; paras?: string[]; list?: string[]; after?: string };
+/** One piece of a section, rendered in order: a sub-heading, a paragraph, a bulleted list or a numbered list. */
+export type LegalBlock = { h: string } | { p: string } | { ul: string[] } | { ol: string[] };
+
+/** A section is either simple (paras, list, after) or a free sequence of blocks. */
+export type TermsSection = { id: string; title: string; paras?: string[]; list?: string[]; after?: string; blocks?: LegalBlock[] };
 
 export const TERMS: TermsSection[] = [
   {

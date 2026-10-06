@@ -13,7 +13,12 @@ type Entry = MetadataRoute.Sitemap[number];
 // lastModified must be real. Search engines learn to ignore a sitemap whose dates change on every build, so dates here
 // come from content: the newest changelog release for product pages, each post's own date, and each policy's own date.
 const iso = (d: string) => new Date(`${d}T00:00:00Z`);
-const parse = (human: string) => new Date(`${human} UTC`); // "5 October 2026"
+// "5 October 2026". A document can carry an effective date a day or two ahead; a sitemap must never say a page changed
+// in the future, so that case is clamped to now.
+const parse = (human: string) => {
+  const d = new Date(`${human} UTC`);
+  return d.getTime() > Date.now() ? new Date() : d;
+};
 const LATEST_RELEASE = RELEASES.map((r) => r.date).sort().at(-1) ?? "2026-10-01";
 
 type Page = { path: string; priority: number; changeFrequency: Entry["changeFrequency"]; lastModified?: Date };

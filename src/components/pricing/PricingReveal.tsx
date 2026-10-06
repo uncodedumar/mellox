@@ -14,7 +14,9 @@ export default function PricingReveal() {
             io.unobserve(e.target);
           }
         }),
-      { threshold: 0.12 },
+      // Any part entering the viewport counts, with a small inset so cards fade in a little after they appear.
+      // (A ratio threshold never fires for very tall elements, such as a long legal document.)
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" },
     );
     targets.forEach((t) => io.observe(t));
     return () => io.disconnect();

@@ -84,14 +84,10 @@
 }
 
 .faq-item {
-  border-radius: 34px;
+  border-radius: 30px; /* constant: a radius that changes on open makes the corners jump */
   border: 1px solid rgb(255 255 255 / 0.09);
   background: #0b0e14;
-  transition:
-    border-color 0.4s ease,
-    background-color 0.4s ease,
-    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: border-color 0.4s ease, background-color 0.4s ease;
 }
 .faq-item:hover {
   border-color: rgb(255 255 255 / 0.18);
@@ -99,7 +95,6 @@
 .faq-item.is-open {
   border-color: rgb(203 233 96 / 0.4);
   background: #0d1118;
-  border-radius: 28px;
 }
 .faq-item button {
   display: flex;
@@ -142,12 +137,15 @@
   line-height: 1.65;
   color: #98a3c4;
   opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 0.45s ease 0.05s, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(-4px);
+  /* closing: the text goes first and quickly, so it never lingers over a collapsing box */
+  transition: opacity 0.18s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .faq-item.is-open .faq-panel p {
   opacity: 1;
   transform: none;
+  /* opening: the text arrives as the box makes room for it */
+  transition: opacity 0.4s ease 0.12s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
 }
 
 .faq-more {

@@ -176,39 +176,51 @@
   z-index: 4;
   margin-top: clamp(56px, 6vw, 96px);
   border-top: 1px solid rgb(255 255 255 / 0.1);
-  padding: 34px 0 26px;
-  text-align: center;
+  padding: 22px 0 max(26px, env(safe-area-inset-bottom));
 }
-.mx-bottom p {
+.mx-bottom-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 32px;
   width: min(81%, 1536px);
   margin: 0 auto;
-  text-align: left;
-  font-size: clamp(14px, 1.3vw, 19px);
-  color: rgb(255 255 255 / 0.6);
+  font-size: clamp(13px, 1.05vw, 15px);
+  line-height: 1.5;
 }
-.mx-bottom a {
+.mx-bottom-row p {
+  margin: 0;
+  color: rgb(255 255 255 / 0.55);
+}
+.mx-credit a {
+  /* padding makes a comfortable tap target without changing how the line reads */
   display: inline-block;
   padding: 8px 0;
-  margin-top: 22px;
-  font-size: 15px;
-  color: rgb(255 255 255 / 0.35);
+  font-weight: 500;
+  color: rgb(255 255 255 / 0.85);
+  text-decoration: underline;
+  text-decoration-color: rgb(255 255 255 / 0.25);
+  text-underline-offset: 4px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.mx-credit a:hover,
+.mx-credit a:focus-visible { color: var(--brand-lime); text-decoration-color: currentColor; }
+.mx-credit a:focus-visible { outline: 2px solid #cbe960; outline-offset: 4px; border-radius: 4px; }
+
+.mx-cookie-btn {
+  padding: 8px 0;
+  font: inherit;
+  color: rgb(255 255 255 / 0.55);
+  background: none;
+  border: 0;
+  cursor: pointer;
   transition: color 0.2s ease;
 }
-.mx-bottom a:hover { color: rgb(255 255 255 / 0.7); }
+.mx-cookie-btn:hover { color: #fff; }
+.mx-cookie-btn:focus-visible { outline: 2px solid #cbe960; outline-offset: 4px; border-radius: 4px; }
 
 @media (max-width: 760px) {
   .mx-links { grid-template-columns: repeat(2, minmax(0, 1fr)); width: calc(100% - 40px); }
-  .mx-bottom p { width: calc(100% - 40px); }
+  .mx-bottom-row { width: calc(100% - 40px); flex-direction: column; align-items: flex-start; gap: 0; }
 }
-
-.mx-cookie-btn {
-  display: inline-block;
-  padding: 9px 0;
-  margin-top: 22px;
-  font-size: 15px;
-  color: rgb(255 255 255 / 0.35);
-  transition: color 0.2s ease;
-  cursor: pointer;
-}
-.mx-cookie-btn:hover { color: rgb(255 255 255 / 0.7); }
-.mx-cookie-btn:focus-visible { outline: 2px solid #cbe960; outline-offset: 4px; border-radius: 4px; }

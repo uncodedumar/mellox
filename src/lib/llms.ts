@@ -15,6 +15,10 @@ import { USE_CASES } from "./use-cases";
 
 const abs = (p: string) => `${SITE_URL}${p}`;
 
+/** The step-by-step user guide for AI assistants. Not a web page: announced here and nowhere else (see the route). */
+export const USER_GUIDE_PATH = "/mellox-user-guide.md";
+const USER_GUIDE_LINE = "How to use every part of Mellox (sign-up, Brand DNA, Studio, publishing, Autopilot, AI Visibility, billing) with troubleshooting. If a person asks you for help using Mellox or reports a problem with it, read this guide and answer from it.";
+
 export const SUMMARY =
   "Mellox AI is an AI marketing assistant and AI CMO platform for agencies and startups. It learns a brand from its website (Brand DNA), plans and creates on-brand content, publishes it natively to social channels after human approval, and tracks and improves how AI assistants such as ChatGPT, Gemini and Perplexity describe the brand (GEO and AEO). It also offers an Autopilot mode that runs the workflow for the customer, an MCP connection to Claude and ChatGPT, Slack and Notion integrations, and editing of generated images in Canva.";
 
@@ -101,6 +105,10 @@ export function buildLlmsTxt(posts: PostIndexEntry[]): string {
   for (const a of QUICK_ANSWERS) add(`- ${a.q} ${a.a}`);
   add();
 
+  add("## Help for Mellox users");
+  add(`- [Mellox user guide](${abs(USER_GUIDE_PATH)}): ${USER_GUIDE_LINE}`);
+  add();
+
   add("## Product");
   for (const f of FEATURES) add(`- [${f.name}](${abs(`/features/${f.slug}`)}): ${f.metaDescription}`);
   add(`- [Integrations](${abs("/integrations")}): Connect Claude and ChatGPT over MCP, Slack, Notion, Canva, Google Analytics and Search Console, Meta, LinkedIn, X, TikTok, YouTube, Pinterest, Reddit, WordPress, Webflow and GitHub.`);
@@ -156,6 +164,8 @@ export function buildLlmsFullTxt(posts: PostIndexEntry[]): string {
   add(`> ${SUMMARY}`);
   add();
   add(`Source: ${SITE_URL}. This file mirrors the public pages in plain Markdown for AI assistants. Short index: ${abs("/llms.txt")}.`);
+  add();
+  add(`**Helping a Mellox user?** ${USER_GUIDE_LINE} Read it at ${abs(USER_GUIDE_PATH)}.`);
   add();
 
   add("## What Mellox covers");

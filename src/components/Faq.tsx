@@ -16,29 +16,29 @@ function Column({ items, offset }: { items: FaqItem[]; offset: number }) {
         const isOpen = open === i;
         const id = `${base}-${i}`;
         return (
-          <div
-            key={f.q}
-            className={`faq-item ${isOpen ? "is-open" : ""}`}
-            data-reveal
-            style={{ transitionDelay: `${(i * 2 + offset) * 60}ms` }}
-          >
-            <h3>
-              <button
-                type="button"
-                aria-expanded={isOpen}
-                aria-controls={id}
-                onClick={() => setOpen(isOpen ? null : i)}
-              >
-                <span>{f.q}</span>
-                <Plus size={22} strokeWidth={1.6} className="plus" aria-hidden="true" />
-              </button>
-            </h3>
-            <div id={id} role="region" className="faq-panel">
-              <div>
-                <p>{f.a}</p>
+          // The scroll-reveal lives on this wrapper, whose className never changes. The reveal adds `is-in` straight to the
+          // DOM node, so it must not share an element with the `is-open` class that React re-renders on every click:
+          // React would overwrite the whole class attribute, drop `is-in`, and the card would fade out each time.
+          <div key={f.q} className="faq-reveal" data-reveal style={{ transitionDelay: `${(i * 2 + offset) * 60}ms` }}>
+            <div className={`faq-item ${isOpen ? "is-open" : ""}`}>
+              <h3>
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={id}
+                  onClick={() => setOpen(isOpen ? null : i)}
+                >
+                  <span>{f.q}</span>
+                  <Plus size={22} strokeWidth={1.6} className="plus" aria-hidden="true" />
+                </button>
+              </h3>
+              <div id={id} role="region" className="faq-panel">
+                <div>
+                  <p>{f.a}</p>
+                </div>
               </div>
             </div>
-          </div>
+            </div>
         );
       })}
     </div>

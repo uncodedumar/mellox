@@ -4,6 +4,7 @@ import GlassFilter from "@/components/GlassFilter";
 import Navbar from "@/components/Navbar";
 import PricingHeroBackground from "@/components/pricing/PricingHeroBackground";
 import PricingReveal from "@/components/pricing/PricingReveal";
+import Rich from "./Rich";
 import type { TermsSection } from "@/lib/terms";
 import "@/components/pricing/pricing.css";
 import "./legal.css";
@@ -60,22 +61,52 @@ export default function LegalPage({
             </aside>
 
             <article className="px-card lg-doc" data-reveal>
-              <p className="lg-intro">{intro}</p>
+              <div className="lg-intro">{intro}</div>
               {sections.map((s, i) => (
                 <section key={s.id} id={s.id} className="lg-sec">
                   <h2>
                     <span>{String(i + 1).padStart(2, "0")}</span>
                     {s.title}
                   </h2>
-                  {s.paras?.map((p) => <p key={p}>{p}</p>)}
+                  {s.paras?.map((p) => (
+                    <p key={p}>
+                      <Rich text={p} />
+                    </p>
+                  ))}
                   {s.list && (
                     <ul>
                       {s.list.map((l) => (
-                        <li key={l}>{l}</li>
+                        <li key={l}>
+                          <Rich text={l} />
+                        </li>
                       ))}
                     </ul>
                   )}
-                  {s.after && <p>{s.after}</p>}
+                  {s.after && (
+                    <p>
+                      <Rich text={s.after} />
+                    </p>
+                  )}
+                  {s.blocks?.map((b, j) => {
+                    if ("h" in b) return <h3 key={j}>{b.h}</h3>;
+                    if ("p" in b)
+                      return (
+                        <p key={j}>
+                          <Rich text={b.p} />
+                        </p>
+                      );
+                    const items = "ul" in b ? b.ul : b.ol;
+                    const List = "ul" in b ? "ul" : "ol";
+                    return (
+                      <List key={j}>
+                        {items.map((l, k) => (
+                          <li key={k}>
+                            <Rich text={l} />
+                          </li>
+                        ))}
+                      </List>
+                    );
+                  })}
                 </section>
               ))}
             </article>

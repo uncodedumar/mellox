@@ -112,8 +112,16 @@ export default function Footer() {
       </nav>
 
       <div className="mx-bottom">
-        <p>All rights reserved for @MELLOX</p>
-        <CookieSettingsButton className="mx-cookie-btn">Cookie Settings</CookieSettingsButton>
+        <div className="mx-bottom-row">
+          <p className="mx-copy">&copy; {new Date().getFullYear()} mellox.ai. All rights reserved.</p>
+          <CookieSettingsButton className="mx-cookie-btn">Cookie Settings</CookieSettingsButton>
+          <p className="mx-credit">
+            Website designed and engineered by{" "}
+            <a href="https://www.antrosys.com" target="_blank" rel="noopener noreferrer">
+              Antrosys<span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );

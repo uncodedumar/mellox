@@ -59,6 +59,7 @@
 }
 
 .lg-doc { padding: clamp(24px, 4vw, 56px); }
+.lg-intro p + p { margin-top: 14px; }
 .lg-intro {
   padding-bottom: 28px;
   font-size: 18px;
@@ -97,19 +98,43 @@
   line-height: 1.75;
   color: #a4aed3;
 }
-.lg-sec ul {
+.lg-sec h3 {
+  margin-top: 30px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: #fff;
+}
+.lg-sec strong { font-weight: 600; color: #e6eaf7; }
+.lg-sec ul,
+.lg-sec ol {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-top: 16px;
   max-width: 72ch;
 }
+.lg-sec ol { list-style: none; counter-reset: lgstep; }
+.lg-sec ol li { counter-increment: lgstep; }
 .lg-sec li {
   position: relative;
   padding-left: 26px;
   font-size: 17px;
   line-height: 1.7;
   color: #a4aed3;
+}
+.lg-sec ol li::before {
+  content: counter(lgstep);
+  top: 0.05em;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #11170a;
+  box-shadow: none;
 }
 .lg-sec li::before {
   content: "";
