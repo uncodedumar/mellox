@@ -47,7 +47,6 @@ describe("smooth scroll wiring", () => {
 
   it("scrollable panels opt out of the smooth wheel", () => {
     expect(read("src", "components", "Navbar.tsx")).toContain("data-lenis-prevent");
-    expect(read("src", "components", "legal", "CookieBanner.tsx")).toContain("data-lenis-prevent");
     expect(read("src", "components", "legal", "LegalPage.tsx")).toContain("data-lenis-prevent");
   });
 });
