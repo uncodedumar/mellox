@@ -830,16 +830,40 @@
 /* ---------- small screens ---------- */
 @media (max-width: 980px) {
   .wf-pin { --stage-h: clamp(660px, calc(100vh - 110px), 820px); }
-  .wf-tab { padding: 11px 14px; }
+  /* tabs: five steps and four connectors must fit the phone width, so nothing clips at either end */
+  .wf-tabs { max-width: 100%; }
+  .wf-tab { gap: 5px; padding: 9px 10px; font-size: 13.5px; }
+  .wf-tab .n { font-size: 11px; }
   .wf-tab .t { display: none; }
   .wf-tab.is-active .t { display: inline; }
+  .wf-seg { width: 7px; }
+  .wf-tab.is-active { transform: none; }
   .wf-card {
     grid-template-columns: 1fr;
     grid-template-rows: auto minmax(0, 1fr);
   }
-  .wf-copy ul { margin-top: 18px; padding-top: 0; }
-  .wf-copy li { padding: 11px 14px; }
+  /* copy: tighter, and the three points become small chips so the illustration keeps real height */
+  .wf-copy { padding: 22px 22px 14px; }
+  .wf-copy h3 { margin-top: 10px; font-size: clamp(1.6rem, 7vw, 2rem); }
+  .wf-copy p { margin-top: 10px; font-size: 14.5px; line-height: 1.5; }
+  .wf-copy ul { flex-direction: row; flex-wrap: wrap; gap: 6px; margin-top: 14px; padding-top: 0; }
+  .wf-copy li { gap: 7px; padding: 6px 11px 6px 7px; border-radius: 999px; font-size: 12.5px; }
+  .tick { width: 18px; height: 18px; }
+  .tick svg { width: 10px; height: 10px; }
   .win { left: 5%; top: 6%; }
+}
+/* very narrow phones: the active tab drops its number so the row still fits */
+@media (max-width: 400px) {
+  .wf-tab { padding: 9px 9px; }
+  .wf-tab.is-active .n { display: none; }
+}
+@media (max-width: 360px) {
+  .wf-tabs { margin-inline: -12px; }
+  .wf-tab { padding: 8px 8px; font-size: 12.5px; }
+}
+/* short phones: drop the chips entirely rather than squeeze the illustration */
+@media (max-width: 980px) and (max-height: 740px) {
+  .wf-copy ul { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

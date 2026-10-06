@@ -1,0 +1,34 @@
+/* ---------- 404 page (builds on pricing.css) ---------- */
+.px-hero.nf-hero { min-height: clamp(520px, 46vw, 680px); }
+.px-hero h1.nf-h1 {
+  max-width: 12ch;
+  font-size: clamp(2.8rem, 7.4vw, 6.2rem);
+}
+.nf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 34px;
+}
+.nf-actions .px-cta { margin-top: 0; min-width: 190px; }
+
+.nf-links {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) { .nf-links { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .nf-links { grid-template-columns: 1fr; } }
+.nf-link {
+  height: 100%;
+  padding: 22px 24px;
+  border-radius: 24px;
+  transition: border-color 0.3s, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nf-link:hover { transform: translateY(-3px); border-color: rgb(203 233 96 / 0.5); }
+.nf-link:focus-visible { outline: 2px solid var(--brand-lime); outline-offset: 3px; }
+.nf-link b { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; }
+.nf-link span { margin-top: 4px; font-size: 14.5px; color: #8b97c2; }

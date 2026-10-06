@@ -70,7 +70,6 @@ function Menu({ link }: { link: NavLink }) {
     };
   }, [open]);
 
-  let lastGroup: string | undefined;
 
   return (
     <li
@@ -108,9 +107,9 @@ function Menu({ link }: { link: NavLink }) {
           role="menu"
           className="rounded-3xl border border-white/10 bg-[#0b0e14]/95 p-2 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.8)] backdrop-blur-xl"
         >
-          {link.children!.map((c) => {
-            const heading = c.group && c.group !== lastGroup ? c.group : null;
-            lastGroup = c.group;
+          {link.children!.map((c, i, all) => {
+            // show a group heading only where the group changes from the previous item
+            const heading = c.group && c.group !== all[i - 1]?.group ? c.group : null;
             return (
               <li key={c.href} role="none">
                 {heading && (

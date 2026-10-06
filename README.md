@@ -87,6 +87,11 @@ the `ANTROSYS` entry in `use-cases.tsx` only with details the customer has appro
 - JSON-LD: `Organization`, `WebSite` and `SoftwareApplication` (with the real plan prices) are rendered on every page
   from `src/lib/seo.ts`; `FAQPage` is added on the home page and `/faq` (and on pages that show their own FAQs).
 - `sitemap.ts` and `robots.ts` are generated; set `NEXT_PUBLIC_SITE_URL` in production.
+- **AI assistants:** `/llms.txt` (a short map of the site) and `/llms-full.txt` (the substance of every key page in
+  Markdown) are generated from the same data that renders the pages, so they stay in sync. `robots.txt` explicitly
+  allows the major AI crawlers (GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended, Bingbot and others;
+  edit `AI_USER_AGENTS` in `src/app/robots.ts`). Nothing guarantees an assistant will cite a site: it also depends on
+  clear pages, consistent facts and third-party mentions.
 
 ## Analytics and cookies
 
@@ -128,6 +133,7 @@ Permissions-Policy and Cross-Origin-Opener-Policy.
 - `content-and-links`: blog post metadata, and every internal navbar and footer link points at a real page.
 - `security-headers`: the CSP and the other security headers, and that `X-Powered-By` stays off.
 - `app-url`: the hero website box passes the typed site on to the app.
+- `llms`: `llms.txt` / `llms-full.txt` structure and content, and the AI-crawler rules in `robots.txt`.
 
 There are no end-to-end browser tests yet. Visual and keyboard checks are done by hand in the browser.
 
