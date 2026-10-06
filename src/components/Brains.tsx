@@ -309,6 +309,7 @@ export default function Brains() {
                   type="button"
                   className={`side-item ${i === active ? "is-active" : ""}`}
                   onClick={() => goTo(i)}
+                  aria-label={b.name}
                   aria-current={i === active}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
