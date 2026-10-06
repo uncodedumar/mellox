@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { COARSE_QUERY, STATIC_MOTION_QUERY } from "@/lib/motion";
 
 type Greeting = { text: string; lang: string; rtl?: boolean };
 
@@ -31,15 +32,14 @@ const GREETINGS: Greeting[] = [
 const segmenter = typeof Intl !== "undefined" && "Segmenter" in Intl ? new Intl.Segmenter() : null;
 const chars = (s: string) => (segmenter ? Array.from(segmenter.segment(s), (x) => x.segment) : Array.from(s));
 
-const QUERY = "(prefers-reduced-motion: reduce)";
-function useReducedMotion() {
+function useMedia(query: string) {
   return useSyncExternalStore(
     (cb) => {
-      const m = window.matchMedia(QUERY);
+      const m = window.matchMedia(query);
       m.addEventListener("change", cb);
       return () => m.removeEventListener("change", cb);
     },
-    () => window.matchMedia(QUERY).matches,
+    () => window.matchMedia(query).matches,
     () => false,
   );
 }
@@ -53,7 +53,8 @@ export default function HelloTypewriter() {
   const [index, setIndex] = useState(0);
   const [count, setCount] = useState(GREETINGS[0].text.length);
   const [phase, setPhase] = useState<"typing" | "holding" | "erasing">("holding");
-  const reduced = useReducedMotion();
+  const reduced = useMedia(STATIC_MOTION_QUERY);
+  const touchFirst = useMedia(COARSE_QUERY);
 
   const g = GREETINGS[index];
   const parts = chars(g.text);
@@ -80,6 +81,14 @@ export default function HelloTypewriter() {
     return () => clearTimeout(t);
   }, [phase, count, parts.length, reduced]);
 
+  if (touchFirst) {
+    // touch-first devices are fully static: one fixed greeting
+    return (
+      <span className="ct-type" lang={GREETINGS[0].lang}>
+        {GREETINGS[0].text}
+      </span>
+    );
+  }
   if (reduced) {
     // no motion: rotate slowly without typing
     return <StaticRotator />;

@@ -777,7 +777,7 @@
   .bi-brand .rule { margin-top: 5px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (pointer: coarse), (hover: none) {
   .brains [data-reveal] { opacity: 1; transform: none; transition: none; }
   .bi *, .bglow .g { animation: none !important; }
   .intent, .shift-tag, .pulse-dot { opacity: 1 !important; }

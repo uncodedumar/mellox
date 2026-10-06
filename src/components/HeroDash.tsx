@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { prefersStaticMotion } from "@/lib/motion";
 
 /**
  * Dashboard shot as a translucent glass panel.
@@ -19,7 +20,7 @@ export default function HeroDash() {
     const slot = el?.parentElement; // untransformed wrapper, used to measure scroll progress
     if (!el || !slot) return;
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = prefersStaticMotion();
 
     const t = { x: 0, y: 0, k: 0, p: 0 };
     const c = { x: 0, y: 0, k: 0, p: 0 };

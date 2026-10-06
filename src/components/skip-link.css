@@ -20,6 +20,6 @@
   outline: 3px solid #fff;
   outline-offset: 2px;
 }
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (pointer: coarse), (hover: none) {
   .skip-link { transition: none; }
 }

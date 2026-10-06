@@ -1,4 +1,5 @@
 import type Lenis from "lenis";
+import { prefersStaticMotion } from "@/lib/motion";
 
 // Shared handle to the page's smooth-scroll engine (Lenis), so any component can scroll the page in the same smooth way.
 // <SmoothScroll /> registers it. When it is not running (reduced motion, before hydration), these fall back to the browser.
@@ -21,6 +22,6 @@ export function scrollToY(y: number, duration = 1.3) {
   if (instance) {
     instance.scrollTo(y, { duration, easing: easeOutExpo });
   } else if (typeof window !== "undefined") {
-    window.scrollTo({ top: y, behavior: "smooth" });
+    window.scrollTo({ top: y, behavior: prefersStaticMotion() ? "auto" : "smooth" });
   }
 }

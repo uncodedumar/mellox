@@ -229,7 +229,7 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (pointer: coarse), (hover: none) {
   .tm [data-reveal] { opacity: 1; transform: none; transition: none; }
   .tm-track, .tm-card { transition: none; }
 }

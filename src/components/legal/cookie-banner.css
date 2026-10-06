@@ -115,7 +115,7 @@
 .ck-switch[aria-checked="true"]::after { transform: translateX(22px); background: #11170a; }
 .ck-switch:disabled { cursor: not-allowed; opacity: 0.6; }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (pointer: coarse), (hover: none) {
   .ck-banner { animation: none; }
   .ck-btn, .ck-switch, .ck-switch::after { transition: none; }
 }

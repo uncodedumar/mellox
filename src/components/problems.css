@@ -477,7 +477,7 @@
   color: rgb(255 255 255 / 0.65);
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (pointer: coarse), (hover: none) {
   .problems [data-reveal] { opacity: 1; transform: none; transition: none; }
   .pb, .chip, .tile, .lock, .typing i, .energy-fill, .draft span, .mem-chip, .prompt-text,
   .bubble, .row, .tangle { animation: none !important; }

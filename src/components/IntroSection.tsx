@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import "./intro.css";
 import "./skip-link.css";
+import { prefersStaticMotion } from "@/lib/motion";
 
 const TEXT =
   "We help enterprises reimagine business growth with our AI Platform, Work Solutions, and Intelligent Marketplace. Unlock efficiency, automation, and innovation across every workflow.";
@@ -63,7 +64,7 @@ export default function IntroSection() {
     const section = sectionRef.current;
     const track = trackRef.current;
     if (!section || !track) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = prefersStaticMotion();
 
     // Reduced motion: no pinned, scroll-driven sequence. Show everything at once as normal flowing content.
     if (reduce) {

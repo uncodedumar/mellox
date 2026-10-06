@@ -8,7 +8,7 @@ import SkipLink from "@/components/SkipLink";
 import SmoothScroll from "@/components/SmoothScroll";
 import CookieBanner from "@/components/legal/CookieBanner";
 import JsonLd from "@/components/JsonLd";
-import { SITE_URL, siteGraph } from "@/lib/seo";
+import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_URL, siteGraph } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 
@@ -33,9 +33,16 @@ const googleSansFlex = Google_Sans_Flex({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: "Mellox AI", template: "%s | Mellox AI" },
-  description:
-    "Mellox is the AI marketing assistant for agencies and startups: Brand DNA, AI search visibility and native publishing in one workspace.",
+  description: SITE_DESCRIPTION,
+  keywords: SITE_KEYWORDS,
+  category: "technology",
   applicationName: "Mellox AI",
+  // allow full-size image previews and unrestricted snippets in search and AI answers
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
   openGraph: { siteName: "Mellox AI", type: "website" },
   twitter: { card: "summary_large_image" },
   // Search Console / Bing Webmaster ownership tags. Set the env vars to the "content" value Google or Bing gives you.
@@ -49,8 +56,9 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: "#0d1114" };
 
+// Skip the intro for returning visitors (same session) and for touch-first devices, which get a static site.
 const PRELOADER_SKIP_SCRIPT =
-  "try{if(sessionStorage.getItem('mx-preloaded'))document.documentElement.setAttribute('data-preloaded','1')}catch(e){}";
+  "try{if(sessionStorage.getItem('mx-preloaded')||matchMedia('(pointer: coarse), (hover: none)').matches)document.documentElement.setAttribute('data-preloaded','1')}catch(e){}";
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

@@ -19,6 +19,29 @@ export const SITE_URL = resolveSiteUrl();
 
 export const SITE_NAME = "Mellox AI";
 
+/** Default description: the plain-words category terms people search for, within a snippet-friendly length. */
+export const SITE_DESCRIPTION =
+  "Mellox is your AI marketing assistant and AI CMO. It learns your brand, creates on-brand posts, images and articles, publishes them for you, and gets you recommended by ChatGPT and Gemini.";
+
+/** Search terms for the product category. Only things Mellox actually does. */
+export const SITE_KEYWORDS = [
+  "AI marketing assistant",
+  "AI CMO",
+  "AI marketing platform",
+  "AI social media post generator",
+  "AI image generator for marketing",
+  "AI content calendar",
+  "social media scheduling",
+  "brand voice AI",
+  "AI marketing for agencies",
+  "AI marketing for startups",
+  "GEO",
+  "AEO",
+  "generative engine optimization",
+  "AI search visibility",
+  "ChatGPT brand visibility",
+];
+
 export const SOCIAL_PROFILES = [
   "https://www.instagram.com/mellox.ai/",
   "https://www.linkedin.com/company/mellox/",
@@ -61,7 +84,19 @@ export const softwareApplicationJsonLd = {
   url: SITE_URL,
   description:
     "Mellox is an AI marketing platform that learns your brand from your website, plans and creates on-brand content, publishes it natively, and works to get your brand cited by AI assistants.",
+  alternateName: ["Mellox", "Mellox AI marketing assistant"],
   applicationCategory: "BusinessApplication",
+  applicationSubCategory: "AI marketing assistant",
+  featureList: [
+    "Brand DNA: learns your voice, audience and rules from your website",
+    "AI social media post, image and article generation",
+    "Content calendar, scheduling and native publishing to LinkedIn, X, Instagram, TikTok, Facebook, YouTube, Pinterest, Reddit and Threads",
+    "AI search visibility tracking and GEO / AEO fixes",
+    "Competitor tracking and weekly briefings",
+    "Agency Mode for managing many clients",
+    "Autopilot with human approval",
+    "Claude and ChatGPT connection over MCP, Slack, Notion and Canva",
+  ],
   operatingSystem: "Web",
   publisher: { "@id": `${SITE_URL}/#organization` },
   offers: [

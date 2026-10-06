@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import "./brains.css";
+import { prefersStaticMotion } from "@/lib/motion";
 import { scrollToY } from "@/lib/smooth-scroll";
 
 /* ---------------- motion illustrations ---------------- */
@@ -224,7 +225,7 @@ export default function Brains() {
   useEffect(() => {
     const wrap = wrapRef.current;
     if (!wrap) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = prefersStaticMotion();
     let raf = 0;
 
     const seg = () => window.innerHeight * 0.85;

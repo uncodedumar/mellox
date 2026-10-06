@@ -196,7 +196,7 @@
   .cn-logo { border-radius: 12px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (pointer: coarse), (hover: none) {
   .ap-on i, .ap-steps::after, .ap-steps b, .ap-dot, .ap-feed li, .ap-bar,
   .cn-pulse, .cn-ring, .cn-node { animation: none; }
   .ap-steps::after { transform: scaleX(0.34); }

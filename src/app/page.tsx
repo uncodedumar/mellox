@@ -14,15 +14,14 @@ import Workflow from "@/components/Workflow";
 import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import { FEATURED, faqs } from "@/lib/faqs";
-import { faqJsonLd } from "@/lib/seo";
+import { SITE_DESCRIPTION, faqJsonLd } from "@/lib/seo";
 import PricingReveal from "@/components/pricing/PricingReveal";
 import WhatsNew from "@/components/whats-new/WhatsNew";
 import "@/components/pricing/pricing.css";
 
 export const metadata: Metadata = {
-  title: { absolute: "Mellox AI: Don't just rank. Be recommended." },
-  description:
-    "AI marketing assistant for agencies and startups. Mellox learns your brand, publishes on-brand content and gets you recommended by ChatGPT and Gemini.",
+  title: { absolute: "Mellox AI: AI Marketing Assistant & AI CMO for Brands" },
+  description: SITE_DESCRIPTION,
   alternates: { canonical: "/" },
 };
 

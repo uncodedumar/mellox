@@ -2,6 +2,7 @@
 
 import "lenis/dist/lenis.css";
 import { useEffect } from "react";
+import { isTouchFirst } from "@/lib/motion";
 import { setSmoothScroll } from "@/lib/smooth-scroll";
 
 /**
@@ -21,7 +22,7 @@ export default function SmoothScroll() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reduce.matches) return;
     // touch / coarse pointers keep native scrolling, so do not even download the library
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (isTouchFirst()) return;
 
     let disposed = false;
     let teardown: (() => void) | undefined;
@@ -31,8 +32,8 @@ export default function SmoothScroll() {
       if (disposed) return;
 
       const lenis = new Lenis({
-        lerp: 0.09, // how quickly the page catches up with the wheel: lower is silkier, higher is snappier
-        wheelMultiplier: 1,
+        lerp: 0.075, // inertia: how quickly the page catches up with the wheel. Lower = heavier, longer glide
+        wheelMultiplier: 0.9, // each wheel notch moves a little less, so momentum (not distance) does the work
         smoothWheel: true,
         syncTouch: false, // keep native touch scrolling
         anchors: true, // #links glide instead of jumping

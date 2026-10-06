@@ -182,7 +182,7 @@
   transform: translateX(4px);
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (pointer: coarse), (hover: none) {
   .faq [data-reveal] { opacity: 1; transform: none; transition: none; }
   .faq-panel, .plus, .faq-panel p { transition: none; }
 }

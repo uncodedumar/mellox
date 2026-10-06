@@ -866,7 +866,7 @@
   .wf-copy ul { display: none; }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (pointer: coarse), (hover: none) {
   .wf [data-reveal] { opacity: 1; transform: none; transition: none; }
   .wf-ill * { animation: none !important; }
   .rv, .post { opacity: 1; }

@@ -36,6 +36,6 @@
   to   { transform: translate3d(-50%, 0, 0); }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (pointer: coarse), (hover: none) {
   .logo-track { animation: none; }
 }

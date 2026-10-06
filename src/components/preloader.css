@@ -286,7 +286,7 @@ html.mx-lock {
   to { transform: translateX(260%); }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (pointer: coarse), (hover: none) {
   .mx-pre-field, .mx-pre-mark .ring, .mx-pre-mark svg, .mx-pre-field .b,
   .mx-load-glow, .mx-load-mark, .mx-load-bar span { animation: none !important; }
   .mx-pre-field { transform: translate(-50%, -50%); opacity: 0.7; }
